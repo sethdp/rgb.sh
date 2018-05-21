@@ -1,8 +1,9 @@
-title: blog.rgb.sh
-permalink: /:title/
+permalink: /blog/:title/
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
+      type: "posts"
     values:
-      layout: "default"
+      layout: "post"
+kramdown:
+  parse_block_html: true

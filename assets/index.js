@@ -15,7 +15,7 @@ const terVS = `
         pos.y = dist * sin(pos.y + 10. * uTime) - .5;
 
         vTex = pos.xz;
-        gl_Position = uMVPMatrix * pos; 
+        gl_Position = uMVPMatrix * pos;
     }
 `;
 
@@ -49,7 +49,7 @@ const sunFS = `
         float x = (gl_FragCoord.x / float(uDims.x) - .5) * float(uDims.z) / float(uDims.w);
         float y = gl_FragCoord.y / float(uDims.y) - .5;
         float inten = (y + .3) / .6;
-    
+
         if (x * x + y * y <= .09 && sin(inten * inten * 100.) >= 0.)
             gl_FragColor = vec4(1, .549 * inten, 0, clamp(1.25 * inten - .25, 0., 1.));
     }
@@ -76,16 +76,12 @@ const crtFS = `
         int my = y - y / 3 * 3;
 
         vec4 t = texture2D(uSampler, vPos);
-        vec4 color = vec4(mx == 0, mx == 1, mx == 2, 1);
-        float scanline = my == 0 ? 1. : 3.;
+        vec3 color = vec3(mx == 0 ? 1. : .5,
+                          mx == 1 ? 1. : .5,
+                          mx == 2 ? 1. : .5);
+        float scanline = my == 0 ? .3 : 1.;
 
-        gl_FragColor = t * color * scanline;
-/*
-TODO finish this
-*/
-        float val = mod(gl_FragCoord.y + 8000. * uTime, 1000.);
-        if (val < 160.)
-            gl_FragColor *= (sin(3.14 * val / 200.) + 1.);
+        gl_FragColor = vec4(2. * t.xyz * color * scanline, 1);
     }
 `;
 
@@ -116,8 +112,8 @@ window.onload = function() {
         gl.attachShader(prog, vs);
         gl.attachShader(prog, fs);
         gl.linkProgram(prog);
-        
-        return prog; 
+
+        return prog;
     };
 
     var proj = mat4.create();
@@ -198,9 +194,11 @@ window.onload = function() {
     var matB = mat4.create();
     var time = 0;
     var prev = 0;
+    var prev2 = 0;
     function frame(now) {
         time += .0001 * (now - prev);
         prev = now;
+
         mat4.fromYRotation(matA, time);
         mat4.multiply(matB, proj, matA);
 

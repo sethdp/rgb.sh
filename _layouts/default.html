@@ -1,23 +1,19 @@
+---
+---
 <!DOCTYPE html>
-<!--
-  Copyright (c) 2017 Seth Pendergrass. See LICENSE.
--->
+<!-- Copyright (c) 2017-18 Seth Pendergrass. See LICENSE. -->
 <html>
-  <head>
+<head>
     <title>rgb.sh</title>
-    <link rel="stylesheet" href="/style.css">
-    <script src="/gl-matrix-min.js"></script>
-    <script src="/script.js"></script>
+    {% for style in page.styles %}<link rel="stylesheet" href="/assets/{{ style }}">{% endfor %}
+    {% for script in page.scripts %}<script src="/assets/{{ script }}"></script>{% endfor %}
+    <link rel="stylesheet" href="/assets/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <div id="body">
-      <div>
-        <h1><a href="/"><span style="color:red">r</span><span style="color:green">g</span><span style="color:blue">b</span>.sh</a></h1>
-      </div>
-
-      {{ content }}
-
-    </div>
-  </body>
+    <meta charset="utf-8">
+</head>
+<body>
+    <a id="title" href="/">rgb.sh</a>
+    {{ content }}
+    <p id="footer"><a href="/">rgb.sh</a> - (c) {{ page.date | date: '%Y' }} Seth Pendergrass </p>
+</body>
 </html>

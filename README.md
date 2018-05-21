@@ -1,2 +1,8 @@
 # rgb.sh
-Source to my personal website.
+
+Source code to my personal website.
+
+See LICENSE.
+
+TODO:
+- HTML/CSS/JS minimizer
