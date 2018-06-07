@@ -1,13 +1,12 @@
-/* Copyright (c) 2017 Seth Pendergrass. See LICENSE. */
+/*
+    Copyright (c) 2017 Seth Pendergrass. See LICENSE.
+*/
 html {
     background: #210;
     color: #fda;
     line-height: 1.5;
     font-family: futura, verdana, sans-serif;
     font-size: 100%;
-}
-code {
-    font-family: courier new, monospace;
 }
 body {
     margin: 0 auto;
@@ -16,6 +15,7 @@ body {
 body > * {
     padding: 0 2rem;
 }
+
 a {
     color: #fc0;
 }
@@ -23,9 +23,11 @@ a:hover, #title:hover {
     background: #fc0;
     color: #210;
 }
+
 li {
     list-style: none;
 }
+
 h1, h2, h3 {
     border: .25rem solid;
     border-radius: 1em;
@@ -57,31 +59,9 @@ img, pre {
                 .25rem .25rem 0 .25rem #f40,
                 .5rem .5rem 0 .25rem #fc0;
     margin: .25rem 0 1.75rem;
-}
-pre {
-    line-height: 1.2;
-    overflow-x: auto;
-    padding: .25em;
-}
+} 
 img {
     width: 100%;
-}
-
-p > code {
-    background: #fda;
-    color: #210;
-}
-
-#title, h1, h2, section {
-    background-color: #210a;
-}
-section {
-    border: .25rem solid #fc0;
-    border-radius: 1.5rem;
-}
-section > * {
-    margin: 1rem 0;
-    padding: 0;
 }
 
 #title {
@@ -99,18 +79,22 @@ section > * {
 #footer {
     margin-top: 3rem;
 }
-#canvas {
-    height: 100%;
-    left: 0;
-    padding: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: -1;
+
+code {
+    font-family: courier new, monospace;
+}
+pre {
+    line-height: 1.2;
+    overflow-x: auto;
+    padding: .25em;
+}
+p > code {
+    background: #fda;
+    color: #210;
 }
 
 /* From Pygments: http://pygments.org/ */
-pre  { background: #fda; color: #2f1e2e }
+pre { background: #fda; color: #2f1e2e }
 pre .c { color: #8d8687 } /* Comment */
 pre .err { color: #ef6155 } /* Error */
 pre .k { color: #815ba4 } /* Keyword */

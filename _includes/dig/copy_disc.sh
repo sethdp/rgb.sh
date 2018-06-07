@@ -10,9 +10,9 @@ fi
 # Get /Volumes/* of external CD/DVD, assumes mounted
 MOUNT="$(mount | grep '{$DEV}\w*' | grep -o '/Volumes/.*')"
 IN="${MOUNT%% (*}"
-OUT="$(pwd)""/${IN##*/}/"
+OUT="$PWD""/${IN##*/}/"
 mkdir -p "$OUT"
 
-echo "${DEV}: ${IN} -> ${OUT}"
+echo "$DEV: $IN -> $OUT"
 cp -Rv "$IN" "$OUT"
 drutil eject
