@@ -20,7 +20,7 @@ _Everything on this site is solely my own view---not my employer's_.
 ## Links
 <section>
 - [GitHub](//github.com/sethdp)
-- [LinkedIn](//linkedin.com/in/sethdp)
+- [LinkedIn](//linkedin.com/in/sethdp/)
 </section>
 
 ## Blog
