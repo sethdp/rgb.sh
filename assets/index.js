@@ -94,7 +94,7 @@ window.onload = function() {
     canvas.height = fbHeight * 3;
 
     const gl = canvas.getContext('webgl');
-    gl.clearColor(0, 0, 0, 1);
+    gl.clearColor(1 / 15, .5 / 15, 0, 1);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     gl.viewport(0, 0, fbWidth, fbHeight);
