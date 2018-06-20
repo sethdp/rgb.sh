@@ -7,7 +7,6 @@ styles:
     - index.css
 ---
 # Seth Pendergrass
-
 ## About
 <section>
 I'm a graphics programmer living in Seattle, and this is my website.

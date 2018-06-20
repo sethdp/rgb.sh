@@ -1,4 +1,4 @@
-permalink: /blog/:title/
+permalink: /b/:title
 defaults:
   - scope:
       path: ""
