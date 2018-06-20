@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Assumes macOS
 
 # Get /dev/disk* of external CD/DVD drive
 DEV="$(drutil status | grep -m1 -o '/dev/disk.*')"

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+# Extract attachments from mbox exported from Thunderbird
 for dir in *.mbox*/; do
     out="${dir%%.mbox*}"
     mkdir -p "$out"

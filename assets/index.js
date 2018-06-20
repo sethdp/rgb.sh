@@ -1,89 +1,17 @@
+---
+---
 /*
     Copyright (c) 2017-18 Seth Pendergrass. See LICENSE.
 */
 
 "use strict";
 
-const terVS = `
-    attribute vec4 aPos;
-    uniform mat4 uMVPMatrix;
-    uniform float uTime;
-    varying lowp vec2 vTex;
-    void main() {
-        vec4 pos = aPos;
-        float dist = sqrt(pos.x * pos.x + pos.z * pos.z) / sqrt(9. * 9. * 2.);
-        pos.y = dist * sin(pos.y + 10. * uTime) - .5;
-
-        vTex = pos.xz;
-        gl_Position = uMVPMatrix * pos;
-    }
-`;
-
-const terFS = `
-    precision lowp float;
-    varying lowp vec2 vTex;
-    void main() {
-        const float thr = .01;
-        float alpha = 0.1;
-        vec2 tex = fract(vTex);
-
-        if (tex.x < thr || tex.x > 1.0 - thr || tex.y < thr || tex.y > 1.0 - thr ||
-            (tex.y + tex.x > 1.0 - thr && tex.y + tex.x < 1.0 + thr))
-            alpha = 1.0;
-
-        gl_FragColor = vec4(1, .078, .576, alpha);
-    }
-`;
-
-const sunVS = `
-    attribute vec2 aPos;
-    void main() {
-        gl_Position = vec4(aPos * 2. - 1., 0., 1.);
-    }
-`;
-
-const sunFS = `
-    precision lowp float;
-    uniform ivec4 uDims;
-    void main() {
-        float x = (gl_FragCoord.x / float(uDims.x) - .5) * float(uDims.z) / float(uDims.w);
-        float y = gl_FragCoord.y / float(uDims.y) - .5;
-        float inten = (y + .3) / .6;
-
-        if (x * x + y * y <= .09 && sin(inten * inten * 100.) >= 0.)
-            gl_FragColor = vec4(1, .549 * inten, 0, clamp(1.25 * inten - .25, 0., 1.));
-    }
-`;
-
-const crtVS = `
-    attribute vec2 aPos;
-    varying lowp vec2 vPos;
-    void main() {
-        gl_Position = vec4(aPos.x * 2. - 1., aPos.y * 2. - 1., 0., 1.);
-        vPos = aPos;
-    }
-`;
-
-const crtFS = `
-    precision lowp float;
-    uniform sampler2D uSampler;
-    uniform float uTime;
-    varying lowp vec2 vPos;
-    void main() {
-        int x = int(gl_FragCoord.x);
-        int mx = x - x / 3 * 3;
-        int y = int(gl_FragCoord.y);
-        int my = y - y / 3 * 3;
-
-        vec4 t = texture2D(uSampler, vPos);
-        vec3 color = vec3(mx == 0 ? 1. : .5,
-                          mx == 1 ? 1. : .5,
-                          mx == 2 ? 1. : .5);
-        float scanline = my == 0 ? .3 : 1.;
-
-        gl_FragColor = vec4(2. * t.xyz * color * scanline, 1);
-    }
-`;
+const terVS = `{% include shaders/terrain.vert %}`;
+const terFS = `{% include shaders/terrain.frag %}`;
+const sunVS = `{% include shaders/sun.vert %}`;
+const sunFS = `{% include shaders/sun.frag %}`;
+const crtVS = `{% include shaders/crt.vert %}`;
+const crtFS = `{% include shaders/crt.frag %}`;
 
 window.onload = function() {
     const fbWidth = 360;
@@ -94,7 +22,7 @@ window.onload = function() {
     canvas.height = fbHeight * 3;
 
     const gl = canvas.getContext('webgl');
-    gl.clearColor(1 / 15, .5 / 15, 0, 1);
+    gl.clearColor(.1, .05, 0, 1);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     gl.viewport(0, 0, fbWidth, fbHeight);
@@ -195,6 +123,7 @@ window.onload = function() {
     var time = 0;
     var prev = 0;
     var prev2 = 0;
+
     function frame(now) {
         time += .0001 * (now - prev);
         prev = now;
