@@ -2,10 +2,9 @@
 title: 3D Matrix Transformations
 scripts:
     - gl-matrix-min.js
-    - transform.js
+    - blog/transform.js
 styles:
-    - transform.css
-    - katex.min.css
+    - blog/transform.css
 ---
 
 Note: all matrix math is in OpenGL order
