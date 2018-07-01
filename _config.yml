@@ -1,4 +1,4 @@
-permalink: /b/:title
+permalink: /blog/:title
 defaults:
   - scope:
       path: ""
@@ -7,3 +7,4 @@ defaults:
       layout: "post"
 kramdown:
   parse_block_html: true
+theme:

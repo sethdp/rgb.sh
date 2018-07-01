@@ -3,8 +3,6 @@ layout: default
 scripts:
     - gl-matrix-min.js
     - index.js
-styles:
-    - index.css
 ---
 # Seth Pendergrass
 ## About
