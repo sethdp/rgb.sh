@@ -10,12 +10,16 @@
     <link rel="stylesheet" href="/style.css">
     {% for style in page.styles %}<link rel="stylesheet" href="/{{ style }}">{% endfor %}
     {% for script in page.scripts %}<script src="/{{ script }}"></script>{% endfor %}
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
 </head>
 <body>
-    <a id="title" href="/"><span id="r">r</span><span id="g">g</span><span id="b">b</span>.sh</a>
-    {{ content }}
-    <p id="footer"><a href="/">rgb.sh</a> - (c) {{ page.date | date: '%Y' }} Seth Pendergrass </p>
+
+<a id="title" href="/"><span id="r">r</span><span id="g">g</span><span id="b">b</span>.sh</a>
+
+{{ content }}
+<p id="footer"><a href="/">rgb.sh</a> - (c) Seth Pendergrass </p>
+
 </body>
 </html>

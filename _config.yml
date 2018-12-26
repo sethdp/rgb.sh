@@ -1,4 +1,4 @@
-permalink: /blog/:title
+permalink: /:title
 defaults:
   - scope:
       path: ""
@@ -8,3 +8,4 @@ defaults:
 kramdown:
   parse_block_html: true
 theme:
+exclude: ["README.md", "LICENSE", "Gemfile*", "CNAME"]

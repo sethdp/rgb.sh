@@ -1,5 +1,6 @@
+precision lowp float;
 attribute vec2 aPos;
 
 void main() {
-    gl_Position = vec4(aPos * 2. - 1., 0., 1.);
+    gl_Position = vec4(aPos * 2. - 1., .999, 1);
 }

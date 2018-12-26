@@ -8,31 +8,27 @@ scripts:
 ## About
 <section>
 I'm a graphics programmer living in Seattle, and this is my website.
-
-I wasted way too much time on this design.
-
-_Everything on this site is solely my own view---not my employer's_.
 </section>
 
 ## Links
 <section>
-- [GitHub](//github.com/sethdp)
-- [LinkedIn](//linkedin.com/in/sethdp/)
+[GitHub](//github.com/sethdp) [LinkedIn](//linkedin.com/in/sethdp/) [Twitter](//twitter.com/seth__pen) [Instagram](//instagram.com/seth.pen/)
 </section>
 
 ## Blog
 <section>
-{% for post in site.posts %}
+{% for post in site.posts -%}
 - {{ post.date | date: '%d %b %y' }} [{{ post.title }}]({{ post.url }})
 {% endfor %}
 </section>
 
 ## Projects
 <section>
-{% for project in site.data.projects %}
-- {{ project.name }}  
-  {% if project.arxiv %}[ArXiv](//arxiv.org/abs/{{ project.arxiv }}){% endif %} {% if project.github %}[GitHub](//github.com/sethdp/{{ project.github }}){% endif %} {% if project.youtube %}[YouTube](//youtu.be/{{ project.youtube }}){% endif %}
-{% endfor %}
+- Libssvd [ArXiv](//arxiv.org/abs/1612.07875) [GitHub](//github.com/sethdp/libssvd)
+- Eigenfish [GitHub](//github.com/sethdp/eigenfish)
+- Tree Dance [GitHub](//github.com/sethdp/Tree-Dance) [YouTube](//youtu.be/XXFPnMiZDZg)
+- Titan Fightin [YouTube](//youtu.be/4vmfLjW-_D0)
+- Kinect Laser Harp [GitHub](//github.com/sethdp/Kinect-Laser-Harp) [YouTube](//youtu.be/cuG4zneXyhA)
 </section>
 
 <canvas id="canvas"></canvas>

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-exiftool -r . -d '%y%m%d-%H%M%S' '-filename<${datetimeoriginal}.%e'
+exiftool -r "$1" -d %y%m%d%H%M%S%%-c.%%e '-filename<filemodifydate' '-filename<createdate' '-filename<datetimeoriginal'
