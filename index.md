@@ -28,7 +28,7 @@ I'm a Computer Graphics Engineer based out of Seattle.
 
 ## Links
 <section>
-- [GitHub](//github.com/sethdp)
+- [GitHub](//github.com/pens)
 - [LinkedIn](//linkedin.com/in/sethdp/)
 - [Twitter](//twitter.com/seth__pen)
 - [Instagram](//instagram.com/seth.pen/)
