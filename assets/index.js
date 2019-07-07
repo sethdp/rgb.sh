@@ -40,6 +40,23 @@ function GenShaders(gl, vsrc, fsrc) {
     return prog;
 }
 
+function MakeSun() {
+    const steps = 9;
+    const radius = 4;
+
+    let sunVerts = Array(2 * (steps + 1));
+    sunVerts[0] = 0;
+    sunVerts[1] = 0;
+
+    for (let i = 0; i <= steps; ++i) {
+        let pt = 2 * Math.PI * i / steps + Math.PI / 2;
+        sunVerts[2 * i + 2] = radius * Math.cos(pt);
+        sunVerts[2 * i + 3] = radius * Math.sin(pt);
+    }
+
+    return sunVerts;
+}
+
 function MakeTerrain() {
     const width = 5;
 
@@ -83,15 +100,15 @@ function RunFrame(now) {
     gl.depthFunc(gl.LESS);
     gl.bindBuffer(gl.ARRAY_BUFFER, sunBuf);
     gl.vertexAttribPointer(aPosSun, 2, gl.FLOAT, false, 0, 0);
-    gl.uniform4i(uDimsSun, fbWidth, fbHeight, canvas.clientWidth, canvas.clientHeight);
+    gl.uniformMatrix4fv(uMVPMatrix2, false, proj);
     gl.uniform1f(uTimeSun, time);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.drawArrays(gl.TRIANGLE_FAN, 0, sunVerts.length / 2);
 
     window.requestAnimationFrame(RunFrame);
 }
 
-const fbWidth = 640;
-const fbHeight = 480;
+const fbWidth = 1280;
+const fbHeight = 720;
 
 const canvas = document.getElementById('canvas');
 canvas.width = fbWidth;
@@ -99,7 +116,7 @@ canvas.height = fbHeight;
 
 const gl = canvas.getContext('webgl');
 gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-gl.clearColor(.1, .05, 0, 1);
+//gl.clearColor(.133, .067, 0, 1);
 gl.enable(gl.DEPTH_TEST);
 gl.viewport(0, 0, fbWidth, fbHeight);
 
@@ -109,10 +126,10 @@ const uMVPMatrix = gl.getUniformLocation(terrainProg, 'uMVPMatrix');
 const uTimeTer = gl.getUniformLocation(terrainProg, 'uTime');
 const sunProg = GenShaders(gl, sunVS, sunFS);
 const aPosSun = gl.getAttribLocation(sunProg, 'aPos');
-const uDimsSun = gl.getUniformLocation(sunProg, 'uDims');
 const uTimeSun = gl.getUniformLocation(sunProg, 'uTime');
+const uMVPMatrix2 = gl.getUniformLocation(sunProg, 'uMVPMatrix');
 
-const sunVerts = [ 0, 0, 2, 0, 0, 2 ];
+const sunVerts = MakeSun();
 const sunBuf = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, sunBuf);
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(sunVerts), gl.STATIC_DRAW);

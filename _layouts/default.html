@@ -8,20 +8,22 @@
 <head>
     <title>rgb.sh</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/assets/blog.css">
     {% for style in page.styles %}<link rel="stylesheet" href="/{{ style }}">{% endfor %}
     {% for script in page.scripts %}<script src="/{{ script }}"></script>{% endfor %}
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <!--script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
 </head>
 <body>
 
-<div id="title">
-    <a href="/"><span id="r">r</span><span id="g">g</span><span id="b">b</span>.sh</a>
-</div>
+<nav><a href="/">Home</a></nav>
+<h1>{{ page.title }}</h1>
+<h2>{{ page.date | date: '%B %e %Y' }}</h2>
 
 {{ content }}
-<div id="footer"><a href="/"><span id="r">r</span><span id="g">g</span><span id="b">b</span>.sh</a> - © Seth Pendergrass </div>
+
+<p id="footer">Copyright Seth Pendergrass</p>
 
 </body>
 </html>

@@ -11,8 +11,7 @@ void main() {
         (tex.y + tex.x > 1. - thr && tex.y + tex.x < 1. + thr))
         alpha = 1.;
 
-    vec4 color = mix(vec4(1., .87, .67, alpha), vec4(1., .53, 0, alpha), sin(4. * uTime) / 2. + .5);
-
+    vec4 color = mix(vec4(1., 1., 1., alpha), vec4(.1, .1, .1, alpha), sin(4. * uTime) / 2. + .5);
 
     float channel = mod(gl_FragCoord.x, 6.);
 

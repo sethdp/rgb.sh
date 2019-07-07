@@ -2,9 +2,9 @@
 title: 3D Matrix Transformations
 scripts:
     - gl-matrix-min.js
-    - assets/transform.js
+    - assets/transforms/transform.js
 styles:
-    - assets/transform.css
+    - assets/transforms/transform.css
 ---
 
 Note: all matrix math is in column-major order.

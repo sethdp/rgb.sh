@@ -1,3 +1,5 @@
+---
+---
 'use strict';
 
 const cube = {
@@ -25,37 +27,8 @@ const frustum = {
   colors: new Float32Array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 }
 
-const VS = `
-  attribute vec3 aColor;
-  attribute vec3 aPos;
-  uniform mat4 uTrans;
-  uniform mat4 uVP;
-  uniform bool uNDC;
-  varying vec3 vColor;
-  varying vec3 vPos;
-
-  void main() {
-    gl_PointSize = 10.;
-    vColor = aColor;
-    gl_Position = uTrans * vec4(aPos, 1);
-    if (uNDC) {
-      gl_Position /= gl_Position.w;
-      vPos = gl_Position.xyz;
-      gl_Position = uVP * gl_Position;
-    }
-  }
-`
-const FS = `
-  precision lowp float;
-  varying vec3 vColor;
-  varying vec3 vPos;
-
-  void main() {
-    if (abs(vPos.x) > 1. || abs(vPos.y) > 1. || abs(vPos.z) > 1.)
-      discard;
-    gl_FragColor = vec4(vColor, 1);
-  }
-`
+const VS = `{% include transform/transform.vert %}`
+const FS = `{% include transform/transform.frag %}`
 
 class Stage {
   static compileShader(gl, source, type) {
@@ -84,11 +57,13 @@ class Stage {
   }
 
   static bindAnimation(stage) {
-    stage.canvas.addEventListener('touchstart', ev => { ev.preventDefault(); stage.onStart.bind(stage)(); });
-    stage.canvas.addEventListener('touchend', ev => { ev.preventDefault(); stage.onStop.bind(stage)(); });
+    stage.canvas.addEventListener('touchstart', ev => { ev.preventDefault(); stage.onStart(ev.touches[0]); });
+    stage.canvas.addEventListener('touchend', ev => { ev.preventDefault(); stage.onStop(); });
+    stage.canvas.addEventListener('touchmove', ev => { ev.preventDefault(); stage.onMove(ev.touches[0]); });
     stage.canvas.addEventListener('mousedown', stage.onStart.bind(stage) );
     stage.canvas.addEventListener('mouseup', stage.onStop.bind(stage) );
     stage.canvas.addEventListener('mouseleave', stage.onStop.bind(stage) );
+    stage.canvas.addEventListener('mousemove', stage.onMove.bind(stage));
   };
 
   static drawScene(stage) {
@@ -156,6 +131,7 @@ class Stage {
 
     this.time = null;
     this.rotY = 0;
+    this.prevX = 0;
   }
 
   resize() {
@@ -192,7 +168,7 @@ class Stage {
   animate(timestamp) {
     if (!this.time) this.time = timestamp;
     if (timestamp - this.time > 1000 / 30) {
-      this.rotY += .001 * (timestamp - this.time);
+      //this.rotY += .001 * (timestamp - this.time);
       this.time = timestamp;
       Stage.drawScene(this);
       if (!this.animated) {
@@ -203,8 +179,16 @@ class Stage {
     window.requestAnimationFrame(this.animate.bind(this));
   }
 
-  onStart() {
+  onMove(ev) {
+    if (this.animated) {
+      this.rotY += .01 * (ev.clientX - this.prevX);
+      this.prevX = ev.clientX;
+    }
+  }
+
+  onStart(ev) {
     this.animated = true;
+    this.prevX = ev.clientX;
     window.requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -222,20 +206,25 @@ window.onload = function() {
 
   stages[0].loadObj(cube, vpCam);
   stages[0].loadObj(axes, vpCam);
+
   stages[1].loadObj(cube, model);
   stages[1].loadObj(axes, vpCam);
   stages[1].loadObj(frustum, viewProjInv);
   stages[1].loadObj(cam, viewInv);
+
   stages[2].loadObj(cube, view);
   stages[2].loadObj(axes, vpCam);
   stages[2].loadObj(frustum, projInv);
   stages[2].loadObj(cam, vpCam);
+
   stages[3].loadObj(cube, projFlipZ);
   stages[3].loadObj(axes, flipZ);
   stages[3].loadObj(frustum, vpCam);
+
   stages[4].loadObj(cube, projFlipZ, vpCam);
   stages[4].loadObj(axes, flipZ);
   stages[4].loadObj(frustum, vpCam);
+  
   stages[5].loadObj(cube, proj, null, false);
 
   change();

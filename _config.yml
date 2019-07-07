@@ -1,11 +1,9 @@
-permalink: /:title
+permalink: blog/:title
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
-      layout: "post"
-kramdown:
-  parse_block_html: true
+      layout: "default"
 theme:
-exclude: ["README.md", "LICENSE", "Gemfile*", "CNAME"]
+exclude: ["README.md", "LICENSE", "Gemfile*", "CNAME", "serve.sh"]

@@ -1,6 +1,7 @@
 precision lowp float;
 attribute vec2 aPos;
+uniform mat4 uMVPMatrix;
 
 void main() {
-    gl_Position = vec4(aPos * 2. - 1., .999, 1);
+    gl_Position = uMVPMatrix * vec4(aPos, -10, 1);
 }
