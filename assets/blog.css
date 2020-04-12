@@ -1,9 +1,10 @@
-html {
-    font-size: 16pt;
-}
 body {
     margin: 0 auto;
     max-width: 1024px;
+}
+
+h1 {
+    margin: 8rem 0 0;
 }
 
 pre {
@@ -23,14 +24,6 @@ img ~ em {
     margin: 0 auto;
     max-width: 640px;
     width: 100%;
-}
-
-h1 {
-    display: block;
-    margin-top: 2em;
-}
-h2 {
-    display: block;
 }
 
 /*https://github.com/jwarby/jekyll-pygments-themes/blob/master/monokai.css*/

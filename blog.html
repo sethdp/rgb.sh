@@ -1,0 +1,27 @@
+---
+---
+<!--
+    Copyright (c) 2017-20 Seth Pendergrass. See LICENSE.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Seth Pendergrass</title>
+    <link rel="stylesheet" href="/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <section id="blog">
+      <h1>Blog</h1>
+      {% for post in site.posts %}
+      <div class="post">
+        <a href="{{post.url}}">
+          <h2>{{ post.title }}</h2>
+          <h3>{{ post.date | date: '%B %e %Y' }}</h3>
+        </a>
+      </div>
+      {% endfor %}
+    </section>
+  </body>
+</html>

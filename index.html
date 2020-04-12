@@ -1,7 +1,5 @@
----
----
 <!--
-    Copyright (c) 2017-18 Seth Pendergrass. See LICENSE.
+    Copyright (c) 2017-20 Seth Pendergrass. See LICENSE.
 -->
 <!DOCTYPE html>
 <html>
@@ -14,124 +12,32 @@
 </head>
 
 <body>
-  <section>
+  <img id="grid" src="/assets/index/grid.png">
+  <div id="intro">
     <div>
-      <nav>
-        <a href="#about" class="nav">About Me</a>
-        <a href="#blog" class="nav">Blog</a>
-        <a href="#projects" class="nav">Projects</a>
-      </nav>
-      <div id="info">
-        <h1>Seth<br>Pendergrass</h1>
-        <br>
-        <h2>Software & Graphics Engineer</h2>
-      </div>
+      <h1 id="seth">Seth</h1><!-- 
+      <h1 id="seth">ender</h1>
+      <h1 id="seth">ergrass</h1> -->
+      <h2>Software &</h2>
+      <h2>Computer Graphics</h2>
     </div>
-  </section>
+  </div>
+  
+  <nav>
+    <a href="/about">About Me</a>
+    <a href="/experience">Experience</a>
+    <a href="/blog">Blog</a>
+  </nav>
 
-  <section id="about">
-    <div>
-      <h3 id="about">About Me</h3>
-      <div id="meCt">
-        <img src="/assets/index/me.jpg" alt="me" id="me" />
-        <div id="links">
-          <a href="https://github.com/pens" class="b">
-            <img src="/assets/fontawesome/github.svg" alt="github" class="icon" />
-          </a>
-          <a href="https://www.linkedin.com/in/pens/" class="b">
-            <img src="/assets/fontawesome/linkedin.svg" alt="linkedin" class="icon" />
-          </a>
-        </div>
-      </div>
-      <p>Hi, I'm Seth Pendergrass.</p>
-      <p>I'm a software engineer based out of the Bay Area. I focus on computer graphics.</p>
-      <p>I grew up in the Portland area before moving up to Seattle for school. After graduating from UW, I worked at Microsoft on Xbox Backward Compatibility. Now I work on Oculus at Facebook.</p>
-    </div>
-  </section>
-
-  <section id="blog">
-    <div>
-      <h3 id="blog">Blog</h3>
-      <div id="posts">
-        {% for post in site.posts %}
-        <a href="{{post.url}}" class="post">
-          <h4>{{ post.title }}</h4>
-          <h5>{{ post.date | date: '%B %e %Y' }}</h5>
-        </a>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div>
-      <h3 id="college-projects">College Projects</h3>
-      <div id="projectsList">
-        <div class="project" style="background-image: url('/assets/index/dmd.png');">
-          <div class="content">
-            <h4>Streaming SVD & DMD</h4>
-            <h5>Research Project</h5>
-            <p>The streaming SVD enables faster processing of long sequences of data. Additional algorithm improvements speed up the DMD and allow for real-time background subtraction.</p>
-            <a href="//arxiv.org/abs/1612.07875" class="b2">
-              <img src="/assets/fontawesome/file-alt.svg" alt="arxiv" class="iconSmall" />
-            </a>
-            <a href="//github.com/pens/libssvd" class="b2">
-              <img src="/assets/fontawesome/github.svg" alt="github" class="iconSmall" />
-            </a>
-          </div>
-        </div>
-        <div class="project" style="background-image: url('/assets/index/tree.jpg');">
-          <div class="content">
-            <h4>Tree Dance</h4>
-            <h5>3D Engine</h5>
-            <p> 3D Engine and demo. Uses physically-based rendering, instanced skeletal animation, deferred rendering and more. Includes custom FBX model importer.</p>
-            <a href="//github.com/pens/Tree-Dance" class="b2">
-              <img src="/assets/fontawesome/github.svg" alt="github" class="iconSmall" />
-            </a>
-            <a href="//youtu.be/XXFPnMiZDZg" class="b2">
-              <img src="/assets/fontawesome/youtube.svg" alt="youtube" class="iconSmall" />
-            </a>
-          </div>
-        </div>
-        <div class="project" style="background-image: url('/assets/index/titan.jpg');">
-          <div class="content">
-            <h4>Titan Fightin</h4>
-            <h5>VR Capstone</h5>
-            <p>Multiplayer VR game. One player plays as titan against others in ships. Shows different play scales in one game.</p>
-            <a href="//youtu.be/4vmfLjW-_D0" class="b2">
-              <img src="/assets/fontawesome/youtube.svg" alt="youtube" class="iconSmall" />
-            </a>
-          </div>
-        </div>
-        <div class="project" style="background-image: url('/assets/index/fish.jpg');">
-          <div class="content">
-            <h4>Eigenfish</h4>
-            <h5>Fish Detector</h5>
-            <p>Fish detection package built for the Department of Energy. Finds fish in grainy underwater video using RPCA for filtering.
-            </p>
-            <a href="//github.com/pens/eigenfish" class="b2">
-              <img src="/assets/fontawesome/github.svg" alt="github" class="iconSmall" />
-            </a>
-          </div>
-        </div>
-        <div class="project" style="background-image: url('/assets/index/harp.jpg');">
-          <div class="content">
-            <h4>Kinect Laser Harp</h4>
-            <h5>Musical Instrument</h5>
-            <p>Musical instrument built using a Kinect and compute shaders.</p>
-            <a href="//github.com/pens/Kinect-Laser-Harp" class="b2">
-              <img src="/assets/fontawesome/github.svg" alt="github" class="iconSmall" />
-            </a>
-            <a href="//youtu.be/cuG4zneXyhA" class="b2">
-              <img src="/assets/fontawesome/youtube.svg" alt="youtube" class="iconSmall" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <p id="footer">Copyright 2020 Seth Pendergrass</p>
-
+  <div class="tri" id="t1">
+    <img src="/assets/index/tri1.png">
+  </div>
+  <div class="tri" id="t2">
+    <img src="/assets/index/tri2.png">
+  </div>
+  <div class="tri" id="t3">
+    <img src="/assets/index/tri3.png">
+  </div>
 </body>
+
 </html>
