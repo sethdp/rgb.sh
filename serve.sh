@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-bundle exec jekyll serve --drafts
+bundle exec jekyll serve --livereload --drafts

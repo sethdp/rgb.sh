@@ -1,5 +1,6 @@
 ---
 title: Digitization
+desc: "This is the story of how I digitized all of my family's photos, home movies and files. I discuss the challenges I faced along the way as well as how I dealt with them."
 ---
 Over the 2017 holidays, I decided to collect and digitize all of my family's home media. This included printed photos, tapes and various already-digital storage media. My goal was to make it easier to access our memories and preserve them by saving them to the cloud. I was particularly concerned by the deterioration of the discs and tapes, but making all of the content available from anywhere was also appealing.
 

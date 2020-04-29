@@ -2,8 +2,13 @@ permalink: blog/:title
 defaults:
   - scope:
       path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
       type: "posts"
     values:
-      layout: "default"
+      layout: "post"
 theme:
 exclude: ["README.md", "LICENSE", "Gemfile*", "CNAME", "serve.sh"]
