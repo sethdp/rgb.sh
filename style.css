@@ -10,7 +10,7 @@ exp. mask
 */
 
 html {
-    background-color: #aaa;
+    background-color: #bbb;
     color: #fff;
     font-size: 16pt;
     font-family: "Monaco", monospace;
@@ -27,6 +27,9 @@ a:hover {
     color: #000;
 }
 
+nav {
+    margin-top: 4rem;
+}
 ul {
     margin: 0;
     padding-inline-start: 0;
@@ -40,7 +43,7 @@ h1 {
     font-size: 6em;
     font-weight: normal;
     line-height: .75;
-    margin: 0;
+    margin: 0 0 4rem;
     text-transform: lowercase;
 }
 h2 {
@@ -63,15 +66,9 @@ p {
     margin: 0;
 }
 
-.h {
-    margin-bottom: 4rem;
-}
-.h h1 {
-    margin-bottom: 2rem;
-}
-
 /* Home */
 .i {
+    background-color: rgba(0, 0, 0, .8);
     display: inline;
 }
 .nav {
@@ -100,7 +97,7 @@ p {
 .me {
     float: right;
     image-rendering: pixelated;
-    width: 30%;
+    width: 40%;
     min-width: 300px;
     border-radius: 50%;
     box-shadow: -10px 0 0 -5px red, 5px 8px 0 -5px blue, 5px -8px 0 -5px lime;
@@ -120,19 +117,22 @@ p {
     background-color: rgba(0, 0, 0, .8);
     width: fit-content;
     max-width: 800px;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
 }
 
 /* Experience */
 .job {
-    background-color: rgba(0, 0, 0, .8);
     margin-top: 2rem;
+}
+.job > * {
+    background-color: rgba(0, 0, 0, .8);
+    width: fit-content;
 }
 #mask {
     position: fixed;
-    right: 10%;
-    top: 20%;
-    width: 40%;
+    right: 0;
+    bottom: 0;
+    width: 60%;
     z-index: -1;
 }
 
@@ -166,6 +166,9 @@ p {
     /* make height correct */
     display: inline-block;
 }
+.pimg a:hover {
+    background-color: #fff;
+}
 .pimg > div:first-of-type {
     top: 1rem;
     left: 1rem;
@@ -176,33 +179,42 @@ p {
 }
 
 .proj p {
+    background-color: rgba(0, 0, 0, .8);
     margin-bottom: 2rem;
     max-width: 600px;
 }
 
 /* Blog */
 #t1, #t2, #t3 {
-    width: 100px;
-    position: absolute;
+    width: 250px;
+    position: fixed;
     z-index: -1;
 }
 #t1 {
     right: 5%;
-    top: 20%;
+    top: 5%;
 }
 #t2 {
-    right: 30%;
-    top: 5%;
+    left: 30%;
+    top: 40%;
 }
 #t3 {
     right: 20%;
-    top: 30%;
+    bottom: 5%;
 }
 
 .post {
     display: block;
     margin: 2rem 0;
     text-decoration: none;
+}
+.post > * {
+    background-color: rgba(0, 0, 0, .8);
+    width: fit-content;
+}
+.post:hover > * {
+    background-color: #fff;
+    color: #000;
 }
 
 @media screen and (max-width: 600px) {
