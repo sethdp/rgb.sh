@@ -1,7 +1,7 @@
 ---
 - name: "Streaming SVD & DMD"
   sub: "Research Project"
-  desc: "A streaming version of the Singular Value Decomposition. This enabled a streaming version of the Dynamic Mode Decomposition, allowing for real-time background subtraction among other uses."
+  desc: "A streaming version of the Singular Value Decomposition. This then enabled a streaming version of the Dynamic Mode Decomposition, allowing for real-time background subtraction (among other uses)."
   img: dmd.png
   arxiv: 1612.07875
   github: libssvd
@@ -18,12 +18,12 @@
   youtube: XXFPnMiZDZg
 - name: Titan Fightin
   sub: "VR Capstone"
-  desc: "Multiplayer VR game created with a team for my VR capstone."
+  desc: "My VR capstone team project. Demonstrates asymmetic multiplayer in Virtual Reality."
   img: titan.jpg
   youtube: 4vmfLjW-_D0
 - name: Kinect Laser Harp
   sub: "Hackathon Musical Instrument"
-  desc: "A laser harp built using the Kinect. Able to play the C-major scale in AR."
+  desc: "An Augmented Reality laser harp using the Kinect. I built this in a day at DubHacks."
   img: harp.jpg
   github: Kinect-Laser-Harp
   youtube: cuG4zneXyhA

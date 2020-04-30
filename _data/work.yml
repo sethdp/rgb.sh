@@ -4,8 +4,8 @@
   desc: "I work on Oculus Link."
 - company: Microsoft
   date: Summers 2016 & 2017, 2018 - 2019
-  desc: "I interned twice: first, on Remote Desktop Graphics; and second, on Xbox Backward Compatibility GPU. I came back full-time to continue working on BackCompat."
+  desc: "I interned twice: first, on Remote Desktop Graphics; and second, on Xbox Backward Compatibility GPU. I came back full-time to continue working on BackCompat, where I fixed graphics bugs in numerous titles."
 - company: University of Washington
   date: 2015 - 2017
-  desc: "I worked as an Undergraduate Research Assistant in Steven Brunton's mechanical engineering lab."
+  desc: "I worked as an Undergraduate Research Assistant in Steven Brunton's mechanical engineering lab. Here I worked on accelerating the Streaming Singular Value Decomposition and Dynamic Mode Decomposition with GPUs and on using Machine Learning for underwater fish detection. In addition, I helped the PLSE lab in CSE with 3D Printing."
 ---
