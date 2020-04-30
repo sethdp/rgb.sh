@@ -1,4 +1,5 @@
 ---
+layout:
 ---
 /*
     Copyright (c) 2017-18 Seth Pendergrass. See LICENSE.
@@ -42,16 +43,16 @@ function GenShaders(gl, vsrc, fsrc) {
 
 function MakeSun() {
     const steps = 9;
-    const radius = 4;
+    const radius = 3;
 
     let sunVerts = Array(2 * (steps + 1));
     sunVerts[0] = 0;
-    sunVerts[1] = 0;
+    sunVerts[1] = -1;
 
     for (let i = 0; i <= steps; ++i) {
         let pt = 2 * Math.PI * i / steps + Math.PI / 2;
         sunVerts[2 * i + 2] = radius * Math.cos(pt);
-        sunVerts[2 * i + 3] = radius * Math.sin(pt);
+        sunVerts[2 * i + 3] = radius * Math.sin(pt) - 1;
     }
 
     return sunVerts;
@@ -63,8 +64,8 @@ function MakeTerrain() {
     let terVerts = Array(3 * width * width);
     for (let i = 0; i < width * width; ++i) {
         terVerts[3 * i] = (i % width) - Math.floor(width / 2); 
-        terVerts[3 * i + 1] = Math.random() * 2 * Math.PI; 
-        terVerts[3 * i + 2] = Math.floor(i / width) - width + 1;
+        terVerts[3 * i + 1] = Math.random() * 2 * Math.PI - 1; 
+        terVerts[3 * i + 2] = Math.floor(i / width) - width - 2;
     }
 
     let terIdxs = Array(2 * 3 * (width - 1) * (width - 1));
@@ -107,10 +108,10 @@ function RunFrame(now) {
     window.requestAnimationFrame(RunFrame);
 }
 
-const fbWidth = 1280;
-const fbHeight = 720;
+const fbWidth = 640;
+const fbHeight = 360;
 
-const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('gl');
 canvas.width = fbWidth;
 canvas.height = fbHeight;
 
@@ -147,10 +148,12 @@ let proj = mat4.create();
 let time = 0;
 let prev = 0;
 
-mat4.perspective(proj, 1 / Math.tan(Math.PI / 4), window.innerWidth / window.innerHeight, .01, 100);
+mat4.perspective(proj, 1 / Math.tan(Math.PI / 4), fbWidth / fbHeight, .01, 100);
+/*
 window.addEventListener('resize', function() {
     mat4.perspective(proj, 1 / Math.tan(Math.PI / 4), window.innerWidth / window.innerHeight, .01, 100);
 });
+*/
 
 window.requestAnimationFrame(RunFrame);
 }; //window.onload

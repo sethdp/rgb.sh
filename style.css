@@ -2,16 +2,9 @@
     Copyright (c) 2017-20 Seth Pendergrass. See LICENSE.
 */
 
-/*
-TODO
-700px - experience title
-blog triangles
-exp. mask
-*/
-
 html {
-    background-color: #bbb;
-    color: #fff;
+    background-color: #a8adb5;
+    color: #fafcff;
     font-size: 16pt;
     font-family: "Monaco", monospace;
 }
@@ -23,7 +16,7 @@ a, a:visited {
     color: unset;
 }
 a:hover {
-    background-color: #fff;
+    background-color: #fafcff;
     color: #000;
 }
 
@@ -54,7 +47,7 @@ h2 {
     margin: 0;
 }
 h3 {
-    color: #ddd;
+    color: #d3d8e0;
     font-size: 1rem;
     font-weight: normal;
     margin: 0;
@@ -76,11 +69,10 @@ p {
     text-align: right;
     margin: 0;
 }
-.gl {
-    background-color: white;
-    width: 250px;
-    height: 250px;
-    left: 25%;
+#gl {
+    width: 640px;
+    height: 360px;
+    left: 10%;
     bottom: 25%;
     position: absolute;
 }
@@ -167,7 +159,7 @@ p {
     display: inline-block;
 }
 .pimg a:hover {
-    background-color: #fff;
+    background-color: #fafcff;
 }
 .pimg > div:first-of-type {
     top: 1rem;
@@ -213,7 +205,7 @@ p {
     width: fit-content;
 }
 .post:hover > * {
-    background-color: #fff;
+    background-color: #fafcff;
     color: #000;
 }
 
@@ -230,6 +222,10 @@ p {
 
     #title {
         font-size: 6rem;
+    }
+    #gl {
+        width: 320px;
+        height: 180px;
     }
 
     .pimg > div:first-of-type {
