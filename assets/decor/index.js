@@ -2,15 +2,15 @@
 layout:
 ---
 /*
-    Copyright (c) 2017-18 Seth Pendergrass. See LICENSE.
+    Copyright (c) 2017-20 Seth Pendergrass. See LICENSE.
 */
 "use strict";
 window.onload = function() {
 
-const terVS = `{% include shaders/terrain.vert %}`;
-const terFS = `{% include shaders/terrain.frag %}`;
-const sunVS = `{% include shaders/sun.vert %}`;
-const sunFS = `{% include shaders/sun.frag %}`;
+const terVS = `{% include index/terrain.vert %}`;
+const terFS = `{% include index/terrain.frag %}`;
+const sunVS = `{% include index/sun.vert %}`;
+const sunFS = `{% include index/sun.frag %}`;
 
 function GenShaders(gl, vsrc, fsrc) {
     let vs = gl.createShader(gl.VERTEX_SHADER);

@@ -18,7 +18,7 @@ All of the below scripts were written for [Bash 4](https://www.gnu.org/software/
 # Discs
 We had created many computer backups over the years as we upgraded our PC's. This resulted in a large stack of CD's and DVD's that I would need to copy to my Mac and dig through. Getting the data off was not challenging, but *tedious*. I wrote the below to automatically copy all data off of the disc and eject it once finished, so that I could ~~watch TV~~ "be productive" while using the least effort to set up and finish the copy.
 ```bash
-{% include dig/disc.sh %}
+{% include digitization/disc.sh %}
 ```
 I did find a few discs that macOS could not read. I assumed these were corrupt, and tried dd, ddrescue, sleuthkit and foremost with no luck. A disc repair tool didn't help make the discs readable either. I ended up trying a Windows PC, which was able to get most of the data off. They were apparently created with Windows Live OneCare and were never finished burning.
 
@@ -30,7 +30,7 @@ Each time that we moved my mom to a new laptop, we would copy the entirety of he
 ## Digital
 Having sorted out all of the photos copied from discs and computer backups, I had ended up with a huge number of duplicates. [findimagedupes](https://github.com/opennota/findimagedupes) worked great to eliminate most of the duplicates. While a few copies remained, most still had their EXIF data allowing me to select the ones with larger file sizes (and presumably resolution) by hand. [ExifTool](https://www.sno.phy.queensu.ca/~phil/exiftool/) allowed me to sort all of my photos safely, and find any images with identical EXIF data. I used the following script to organize all of the photos into a consistent format, which I could then organize by event or location later.
 ```bash
-{% include dig/photos.sh %}
+{% include digitization/photos.sh %}
 ```
 
 ## Film
@@ -47,11 +47,11 @@ For our home movies I had to digitize VHS, Video8 and a single VHS-C. I processe
 ## Digital
 I gathered our digital videos from disc backups and from my parents' current computers. These were saved in a bunch of different formats such as .MOV, .VOB and .wmv, so I opted to convert them all to .mp4 with [FFmpeg](https://ffmpeg.org/documentation.html).
 ```bash
-{% include dig/videos.sh %}
+{% include digitization/videos.sh %}
 ```
 DVDs store their chapters as separate .VOB files. In some cases, I wanted these to be re-merged into a single video for playback.
 ```bash
-{% include dig/merge.sh %}
+{% include digitization/merge.sh %}
 ```
 On Mac I used QuickTime Player (Edit > Trim ...) to manually trim the start and end of each video after digitized and converted to .mp4. There is a good opportunity here for some sort of automatic trimming based on video & audio analyis.
 
@@ -62,7 +62,7 @@ There were a couple of Compact Cassettes (audio tapes) my parents wanted digitiz
 
 ffmpeg's ffprobe tool confirmed the audio was aac, so I chose to copy out the audio stream into a .m4a (aac) audio file. The pan filter let me save only the left audio channel.
 ```bash
-{% include dig/cassettes.sh %}
+{% include digitization/cassettes.sh %}
 ```
 As with videos, I used QuickTime Player to trim the audio recordings after they were processed.
 
@@ -71,7 +71,7 @@ As with videos, I used QuickTime Player to trim the audio recordings after they 
 # Schoolwork
 I found a couple of old school assignments where I had either lost the digital original, or were never on the computer in the first place. My parent's multifunction printer/scanner was the easiest way for me to scan the documents, but the output was a separate .jpg file per page. [ImageMagick](https://www.imagemagick.org/script/command-line-processing.php)'s convert tool allowed me to combine these into a single .pdf.
 ```bash
-{% include dig/document.sh %}
+{% include digitization/document.sh %}
 ```
 I also have a bunch of art I made back in high school. Smaller pieces were also scanned using the flatbed. Large artwork was photographed with my DSLR on a tripod with as even of lighting as possible. I then trimmed the photos down to fit the art.
 
@@ -86,7 +86,7 @@ While I didn't care about saving the emails outside of just holding onto the .mb
 
 From here, I wrote a script to organize all of the attachments so that I could quickly find the attachments I care about.
 ```bash
-{% include dig/email.sh %}
+{% include digitization/email.sh %}
 ```
 
 # Conclusion
