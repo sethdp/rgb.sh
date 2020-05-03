@@ -115,7 +115,7 @@ var State = {
     VIEW: 2,
     CLIP: 3,
     NDC: 4,
-    FINAL: 5
+    OUTPUT: 5
 };
 var currentState = State.MODEL;
 
@@ -132,12 +132,12 @@ function setVisible(id) {
     // hold reference to header and update through it
     // need way for id -> header string
 
-    document.getElementById('header').innerText = id;
+    document.getElementById('heading').innerText = id;
     var cur_id = 'model';
 
-    var labels = ['model', 'world', 'view', 'clip', 'ndc', 'final'];
+    var labels = ['model', 'world', 'view', 'clip', 'ndc', 'output'];
     for (var i = 0; i < labels.length; ++i) {
-        document.getElementById(labels[i] + '_desc').hidden = labels[i] == id ? false : true;
+        document.getElementById(labels[i]).hidden = labels[i] == id ? false : true;
     }
 }
 
@@ -154,8 +154,6 @@ function drawScene() {
             drawModel(frustum, viewProjInv); 
             drawModel(cam, viewInv);
             setVisible('world');
-
-            title.innerText = 'World';
             break;
         case State.VIEW:
             var transform = mat4.create();
@@ -164,6 +162,7 @@ function drawScene() {
             drawModel(axes, I);
             drawModel(frustum, projInv);
             drawModel(cam, I);
+            setVisible('view');
             break;
         case State.CLIP:
             var transform = mat4.create();
@@ -175,6 +174,7 @@ function drawScene() {
             drawModel(cube, transform);
             drawModel(axes, flipZ);
             drawModel(frustum, I);
+            setVisible('clip');
             break;
         case State.NDC:
             var transform = mat4.create();
@@ -186,29 +186,31 @@ function drawScene() {
             drawModel(cube, transform, true);
             drawModel(axes, flipZ);
             drawModel(frustum, I);
+            setVisible('ndc');
             break;
-        case State.FINAL:
+        case State.OUTPUT:
             var transform = mat4.create();
             mat4.multiply(transform, view, world);
             mat4.multiply(transform, proj, transform);
             drawModel(cube, transform, false, false);
+            setVisible('output');
             break;
     }
 }
 
 function setupControls() {
-    var modelBtn = document.getElementById("model");
+    var modelBtn = document.getElementById("modelBtn");
     modelBtn.addEventListener('click', () => { onChange(State.MODEL); });
-    var worldBtn = document.getElementById("world");
+    var worldBtn = document.getElementById("worldBtn");
     worldBtn.addEventListener('click', () => { onChange(State.WORLD); });
-    var viewBtn = document.getElementById("view");
+    var viewBtn = document.getElementById("viewBtn");
     viewBtn.addEventListener('click', () => { onChange(State.VIEW); });
-    var clipBtn = document.getElementById("clip");
+    var clipBtn = document.getElementById("clipBtn");
     clipBtn.addEventListener('click', () => { onChange(State.CLIP); });
-    var ndcBtn = document.getElementById("ndc");
+    var ndcBtn = document.getElementById("ndcBtn");
     ndcBtn.addEventListener('click', () => { onChange(State.NDC); });
-    var finalBtn = document.getElementById("final");
-    finalBtn.addEventListener('click', () => { onChange(State.FINAL); });
+    var outputBtn = document.getElementById("outputBtn");
+    outputBtn.addEventListener('click', () => { onChange(State.OUTPUT); });
 
     // go through all children of child of controls
     document.getElementById('controls').children[0].children;
@@ -216,9 +218,6 @@ function setupControls() {
 
     var canvas = document.getElementById('scene');
     var gl = canvas.getContext('webgl');
-
-    var title = document.getElementById('header');
-    var desc = document.getElementById('desc');
 
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.width * 3 / 4;
