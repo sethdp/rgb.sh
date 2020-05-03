@@ -1,7 +1,7 @@
 permalink: blog/:title
 defaults:
   - scope:
-      path: ""
+      path: "*.html"
       type: "pages"
     values:
       layout: "page"

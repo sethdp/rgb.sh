@@ -1,5 +1,4 @@
 ---
-layout:
 ---
 /*
     Copyright (c) 2017-20 Seth Pendergrass. See LICENSE.

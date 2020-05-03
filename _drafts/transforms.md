@@ -1,7 +1,7 @@
 ---
 title: 3D Matrix Transformations
 scripts:
-    - gl-matrix-min.js
+    - assets/gl-matrix-min.js
     - assets/transforms/transforms.js
 styles:
     - assets/transforms/transform.css

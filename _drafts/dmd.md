@@ -1,5 +1,6 @@
 ---
 title: Dynamic Mode Decomposition
+desc: An overview of what the Dynamic Mode Decomposition is, and some of its interesting aspects.
 ---
 <!-- TODO 
 Why can't use big lambda
