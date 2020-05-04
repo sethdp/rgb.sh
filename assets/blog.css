@@ -42,6 +42,13 @@ img ~ em {
     width: 100%;
 }
 
+li {
+    margin-top: 1rem;
+}
+li > ul {
+    margin-left: 1rem;
+}
+
 .highlight .hll { background-color: #49483e }
 .highlight  { background: #272822; color: #f8f8f2 }
 .highlight .c { color: #75715e } /* Comment */
