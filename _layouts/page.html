@@ -1,35 +1,8 @@
 ---
+layout: head
 ---
-<!DOCTYPE html>
-<!--
-    Copyright (c) 2017-20 Seth Pendergrass. See LICENSE.
--->
-<html>
-<head>
-    <title>rgb.sh</title>
-    <link rel="stylesheet" href="/assets/style.css">
-    {% for style in page.styles %}<link rel="stylesheet" href="/{{ style }}">{% endfor %}
-    {% for script in page.scripts %}<script src="/{{ script }}"></script>{% endfor %}
-    <!--script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script-->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112153380-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-112153380-1');
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-</head>
-<body>
-
 <h1>{{ page.title }}</h1>
 
 {{ content }}
 
 <nav><a href="/">Home</a></nav>
-
-</body>
-</html>
