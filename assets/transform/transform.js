@@ -257,7 +257,9 @@ window.onload = function() {
                 draw(cube, transform);
                 draw(axes, I);
                 draw(frustum, projInv);
+                gl.disable(gl.DEPTH_TEST);
                 draw(cam, I);
+                gl.enable(gl.DEPTH_TEST);
                 break;
             case 3:
                 mat4.multiply(transform, view, world);

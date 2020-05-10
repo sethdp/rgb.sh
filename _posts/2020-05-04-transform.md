@@ -52,6 +52,15 @@ Before getting into the details of graphics transforms, it's important to mentio
 
     I will left-multiply below because I feel it better follows math convention, but the given matrices are just the transpose of the right-multiplying version.
 
+# Interactive Transforms
+This tool lets you see walk through all of the spaces of the rendering pipeline and see what effect each has.
+I've limited the controls at each stage to be representative of the kinds of transforms you'd perform, but not all-inclusive.
+- The red axis is x, the green axis is y and the blue axis is z.
+- These axes will always be at the origin of the current space.
+- The white wireframe fulcrum is the area that will be visible after projection and clipping. The white wireframe cube is this same area but after projection.
+- The white dot represents the camera's location in the world.
+- The cube is an object in the scene being viewed; I've given it a gradient to distinguish it's orientation (notice that the camera sees the cube from the opposite side we do).
+
 <canvas id="scene"></canvas>
 
 <div id="controls">
