@@ -6,7 +6,7 @@ html {
     background-color: #a8adb5;
     color: #fafcff;
     font-size: 16pt;
-    font-family: "Monaco", monospace;
+    font-family: 'Baskerville', serif;
 }
 body {
     margin: 1rem;
@@ -21,11 +21,11 @@ a:hover {
 }
 
 nav {
+    font-family: 'Monaco', monospace;
     margin-top: 4rem;
 }
 ul {
     margin: 0;
-    padding-inline-start: 0;
 }
 nav li {
     list-style-type: none;
@@ -34,7 +34,7 @@ nav li {
 
 h1 {
     font-family: 'Futura', sans-serif;
-    font-size: 6em;
+    font-size: 4em;
     font-weight: normal;
     line-height: .75;
     margin: 0 0 4rem;
@@ -49,13 +49,13 @@ h2 {
 }
 h3 {
     color: #d3d8e0;
+    font-family: 'Monaco', monospace;
     font-size: 1rem;
     font-weight: normal;
     margin: 0;
 }
 
 p {
-    font-family: "Baskerville", serif;
     font-size: 120%;
     margin: 0;
 }

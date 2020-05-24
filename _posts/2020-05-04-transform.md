@@ -60,7 +60,7 @@ I've limited the controls at each stage to be representative of the kinds of tra
 - The white dot represents the camera's location in the world.
 - The cube is an object in the scene being viewed; I've given it a gradient to distinguish it's orientation (notice that the camera sees the cube from the opposite side we do).
 
-<div id="three"></div>
+<div id="three" style="width: 100%;"></div>
 
 <div id="controls">
   <button value="model">Model</button>

@@ -51,17 +51,19 @@ function setupParams() {
     Three.js
 */
 let renderer = new THREE.WebGLRenderer();
-renderer.setSize(800, 600);
-document.getElementById('three').appendChild(renderer.domElement);
+let div = document.getElementById('three');
+renderer.setSize(div.clientWidth, div.clientWidth * 9 / 16);
+renderer.setPixelRatio(window.devicePixelRatio);
+div.appendChild(renderer.domElement);
 
 let scene = new THREE.Scene();
 
-let camScene = new THREE.OrthographicCamera(-4, 4, 3, -3, 1, 100);
+let camScene = new THREE.OrthographicCamera(-8, 8, 4.5, -4.5, 1, 100);
 camScene.position.set(10, 10, 10);
 camScene.lookAt(new THREE.Vector3(0, 0, 0));
 scene.add(camScene);
 
-let camWorld = new THREE.PerspectiveCamera(60, 1, 1, 10);
+let camWorld = new THREE.PerspectiveCamera(60, 16 / 9, 1, 10);
 camWorld.matrixAutoUpdate = false;
 scene.add(camWorld);
 let frustum = new THREE.CameraHelper(camWorld);
