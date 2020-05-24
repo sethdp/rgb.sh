@@ -1,9 +1,11 @@
-precision lowp float;
-varying vec3 vColor;
-varying vec3 vPos;
+uniform bool clip;
+varying vec4 pos;
+varying vec3 vertexColor;
 
 void main() {
-  if (abs(vPos.x) >= 1. || abs(vPos.y) >= 1. || abs(vPos.z) >= 1.)
-    discard;
-  gl_FragColor = vec4(vColor, 1);
+  if (clip && any(greaterThan(abs(pos.xyz), vec3(pos.w)))) {
+    gl_FragColor = vec4(vertexColor / 2., 1);
+  } else {
+    gl_FragColor = vec4(vertexColor, 1);
+  }
 }

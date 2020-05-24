@@ -50,7 +50,8 @@ function setupParams() {
 /*
     Three.js
 */
-let renderer = new THREE.WebGLRenderer();
+let renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setClearColor(0x000000, 0);
 let div = document.getElementById('three');
 renderer.setSize(div.clientWidth, div.clientWidth * 9 / 16);
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -74,7 +75,14 @@ const faces = [0xff0000, 0x00ffff, 0x00ff00, 0xff00ff, 0x0000ff, 0xffff00];
 for (var i = 0; i < geo.faces.length; ++i) {
     geo.faces[i].color.set(faces[Math.floor(i / 2)]);
 }
-let mat = new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: true });
+let mat = new THREE.ShaderMaterial({
+    uniforms: {
+        clip: { value: false }
+    },
+    vertexColors: true,
+    vertexShader: `{% include transform/transform.vert %}`,
+    fragmentShader: `{% include transform/transform.frag %}`
+});
 let cube = new THREE.Mesh(geo, mat);
 cube.matrixAutoUpdate = false;
 scene.add(cube);
@@ -133,6 +141,7 @@ function drawScene() {
     let cam = camScene;
     axes.visible = true;
     frustum.visible = true;
+    mat.uniforms.clip.value = false;
 
     switch (curSpace) {
         case 'model':
@@ -152,6 +161,7 @@ function drawScene() {
             camWorld.matrix.copy(p);
             break;
         case 'ndc':
+            mat.uniforms.clip.value = true;
             cube.matrix.copy(mvp);
             camWorld.matrix.copy(p);
             break;

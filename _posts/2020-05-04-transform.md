@@ -71,6 +71,18 @@ I've limited the controls at each stage to be representative of the kinds of tra
   <button value="screen">Screen</button>
 </div>
 
+Scale: <input id="scale_m" type="number" min=".5" max="1.5" step=".1" value="1">
+
+Rotation (°Y): <input id="rot_y_m" type="number" min="0" max="180" step="10" value="0">
+
+Translation (X): <input id="trans_x_m" type="number" min="-2" max="2" step=".1" value="0">
+
+Rotation (°Y): <input id="rot_y_v" type="number" min="90" max="270" step="10" value="180">
+
+Translation (Z): <input id="trans_z_v" type="number" min="-5" max="-2" step="1" value="-4">
+
+Field of View (°Vertical): <input id="fov_p" type="number" min="60" max="120" step="10" value="60">
+
 <div id="spaces">
 <section id="model" markdown="1">
 
@@ -83,12 +95,6 @@ This is the space in which the model's vertices exist, as in a 3D modeling packa
 <section id="world" markdown="1">
 
 ## World Space
-
-Scale: <input id="scale_m" type="number" min=".5" max="1.5" step=".1" value="1">
-
-Rotation (°Y): <input id="rot_y_m" type="number" min="0" max="180" step="10" value="0">
-
-Translation (X): <input id="trans_x_m" type="number" min="-2" max="2" step=".1" value="0">
 
 This represents how the model is positioned relative the every other object in the world/scene.
 The matrix may be referred to as a Model matrix or a World matrix.
@@ -122,10 +128,6 @@ $$ \mathbf{S} = \begin{bmatrix} s_x & 0 & 0 & 0 \\ 0 & s_y & 0 & 0 \\ 0 & 0 & s_
 
 ## View / Camera / Eye Space
 
-Rotation (°Y): <input id="rot_y_v" type="number" min="90" max="270" step="10" value="180">
-
-Translation (Z): <input id="trans_z_v" type="number" min="-5" max="-2" step="1" value="-4">
-
 This is how the model is oriented relative to our camera/eye, or where we will be projecting the 3D space into 2D space.
 By applying this transform to every vertex in the scene, we effectively move and rotate everything to put the camera at the origin facing forward.
 This will be important to correctly apply the projection matrix, and lets us determine what is and what is not visible to the camera.
@@ -147,8 +149,6 @@ $$ \mathbf{M}_{view} = \begin{bmatrix} r_x & u_x & f_x & p_x \\ r_y & u_y & f_y 
 <section id="clip" markdown="1">
 
 ## Clip Space
-
-Field of View (°Vertical): <input id="fov_p" type="number" min="60" max="120" step="10" value="60">
 
 Clip space is named becaused it is in this space that we perform *clipping* (although with a slight change of coordinates in hardware).
 Vertices are clipped when any of their $$ x, y, z $$ components lie outside of the camera's frustum.
