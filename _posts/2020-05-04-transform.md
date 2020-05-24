@@ -1,5 +1,7 @@
 ---
 title: 3D Matrix Transformations
+scripts:
+    - transform.js
 styles:
     - transform.css
 excerpt: An interactive journey through the matrix transformations in the rendering pipeline.
@@ -7,8 +9,6 @@ excerpt: An interactive journey through the matrix transformations in the render
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-
-<script type="module" src="/assets/js/transform2.js"></script>
 
 Before getting into the details of graphics transforms, it's important to mention a few major points of confusion around the subject:
 
