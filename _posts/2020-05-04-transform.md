@@ -1,8 +1,5 @@
 ---
 title: 3D Matrix Transformations
-scripts:
-    - assets/gl-matrix-min.js
-    - assets/transform/transform.js
 styles:
     - assets/transform/transform.css
 desc: An interactive journey through the matrix transformations in the rendering pipeline.
@@ -10,6 +7,8 @@ desc: An interactive journey through the matrix transformations in the rendering
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
+
+<script type="module" src="/assets/transform/transform2.js"></script>
 
 Before getting into the details of graphics transforms, it's important to mention a few major points of confusion around the subject:
 
@@ -61,17 +60,18 @@ I've limited the controls at each stage to be representative of the kinds of tra
 - The white dot represents the camera's location in the world.
 - The cube is an object in the scene being viewed; I've given it a gradient to distinguish it's orientation (notice that the camera sees the cube from the opposite side we do).
 
-<canvas id="scene"></canvas>
+<div id="three"></div>
 
 <div id="controls">
-  <button id="modelBtn">Model</button>
-  <button id="worldBtn">World</button>
-  <button id="viewBtn">View</button>
-  <button id="clipBtn">Clip</button>
-  <button id="ndcBtn">NDC</button>
-  <button id="outputBtn">Screen</button>
+  <button value="model">Model</button>
+  <button value="world">World</button>
+  <button value="view">View</button>
+  <button value="clip">Clip</button>
+  <button value="ndc">NDC</button>
+  <button value="screen">Screen</button>
 </div>
 
+<div id="spaces">
 <section id="model" markdown="1">
 
 ## Model / Object Space
@@ -122,7 +122,7 @@ $$ \mathbf{S} = \begin{bmatrix} s_x & 0 & 0 & 0 \\ 0 & s_y & 0 & 0 \\ 0 & 0 & s_
 
 ## View / Camera / Eye Space
 
-Rotation (°Y): <input id="rot_y_v" type="number" min="-90" max="90" step="10" value="0">
+Rotation (°Y): <input id="rot_y_v" type="number" min="90" max="270" step="10" value="180">
 
 Translation (Z): <input id="trans_z_v" type="number" min="-5" max="-2" step="1" value="-4">
 
@@ -184,7 +184,7 @@ $$ \mathbf{x}_{NDC} = \mathbf{x}_{proj} / x_{proj,w} $$
 
 </section>
 
-<section id="output" markdown="1">
+<section id="screen" markdown="1">
 
 ## Screen / Window Space (Output)
 
@@ -195,3 +195,4 @@ Which winding order is front-facing is user-configurable.
 In general, you would also use a depth buffer here in order to keep the front-most triangle at each pixel, as opposed to overwriting with whichever was rendered most recently.
 
 </section>
+</div>
