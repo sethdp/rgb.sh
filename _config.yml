@@ -18,9 +18,10 @@ defaults:
 # Keep _site clean
 exclude: ["README.md", "LICENSE", "Gemfile*", "CNAME", "serve.sh"]
 
-# Jekyll Feed
+# Atom Feed & SEO
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 title: rgb.sh
 description: Seth Pendergrass's Blog
 author: Seth Pendergrass

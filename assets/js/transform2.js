@@ -1,6 +1,6 @@
 ---
 ---
-import * as THREE from '/assets/three.module.js';
+import * as THREE from '/assets/js/three.module.js';
 
 /*
     Coordinate Spaces

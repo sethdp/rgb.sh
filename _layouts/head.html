@@ -1,14 +1,13 @@
 <!--
-    Copyright (c) 2017-20 Seth Pendergrass. See LICENSE.
+    Copyright (c) 2017-{{ site.time | date: "%Y"}} Seth Pendergrass. See LICENSE.
 -->
 <!DOCTYPE html>
-<title>rgb.sh</title>
 <meta charset="utf-8">
-<meta name="description" content="{{ site.description }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/style.css">
-{% for style in page.styles %}<link rel="stylesheet" href="/{{ style }}">{% endfor %}
-{% for script in page.scripts %}<script src="/{{ script }}"></script>{% endfor %}
+{% seo %}
+<link rel="stylesheet" href="/assets/css/style.css">
+{% for style in page.styles %}<link rel="stylesheet" href="/assets/css/{{ style }}">{% endfor %}
+{% for script in page.scripts %}<script src="/assets/js/{{ script }}"></script>{% endfor %}
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112153380-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
