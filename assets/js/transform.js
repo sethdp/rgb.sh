@@ -60,7 +60,7 @@ div.appendChild(renderer.domElement);
 let scene = new THREE.Scene();
 
 let camScene = new THREE.OrthographicCamera(-8, 8, 4.5, -4.5, 1, 100);
-camScene.position.set(10, 10, 10);
+camScene.position.set(10, 5, 5);
 camScene.lookAt(new THREE.Vector3(0, 0, 0));
 scene.add(camScene);
 
@@ -88,6 +88,7 @@ cube.matrixAutoUpdate = false;
 scene.add(cube);
 
 let axes = new THREE.AxesHelper(2);
+axes.matrixAutoUpdate = false;
 scene.add(axes);
 
 let m = new THREE.Matrix4();
@@ -97,6 +98,8 @@ let p = new THREE.Matrix4();
 let mv = new THREE.Matrix4();
 let vp = new THREE.Matrix4();
 let mvp = new THREE.Matrix4();
+let flipZ = new THREE.Matrix4();
+flipZ.makeScale(1, 1, -1);
 
 const y = new THREE.Vector3(0, 1, 0);
 const o = new THREE.Vector3(1, 1, 1);
@@ -108,6 +111,7 @@ let rv = new THREE.Quaternion();
 let tv = new THREE.Vector3();
 
 let camMat = camWorld.matrix.clone();
+let axesMat = axes.matrix.clone();
 
 function updateTransforms() {
     tm.setX(values['trans_x_m']);
@@ -142,6 +146,7 @@ function drawScene() {
     axes.visible = true;
     frustum.visible = true;
     mat.uniforms.clip.value = false;
+    axes.matrix.copy(axesMat);
 
     switch (curSpace) {
         case 'model':
@@ -158,18 +163,24 @@ function drawScene() {
             break;
         case 'clip':
             cube.matrix.copy(mvp);
+            cube.matrix.premultiply(flipZ);
             camWorld.matrix.copy(p);
+            camWorld.matrix.premultiply(flipZ);
+            axes.matrix.premultiply(flipZ);
             break;
         case 'ndc':
             mat.uniforms.clip.value = true;
             cube.matrix.copy(mvp);
+            cube.matrix.premultiply(flipZ);
             camWorld.matrix.copy(p);
+            camWorld.matrix.premultiply(flipZ);
+            axes.matrix.premultiply(flipZ);
             break;
         case 'screen':
             axes.visible = false;
             frustum.visible = false;
             cam = camWorld;
-            cube.matrix.copy(mvp);
+            cube.matrix.copy(m);
             camWorld.matrix.copy(camMat);
             break;
     }
