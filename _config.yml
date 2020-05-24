@@ -1,4 +1,8 @@
+url: https://rgb.sh
 permalink: blog/:title
+theme: null
+
+# Configure Layouts
 defaults:
   - scope:
       path: "*.html"
@@ -10,5 +14,15 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-theme:
+
+# Keep _site clean
 exclude: ["README.md", "LICENSE", "Gemfile*", "CNAME", "serve.sh"]
+
+# Jekyll Feed
+plugins:
+  - jekyll-feed
+title: rgb.sh
+description: Seth Pendergrass's Blog
+author: Seth Pendergrass
+feed:
+  excerpt_only: true

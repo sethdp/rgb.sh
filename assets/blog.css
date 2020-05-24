@@ -15,6 +15,7 @@ h2 {
 }
 
 a {
+    font-family: "Monaco", monospace;
     word-wrap: break-word;
 }
 

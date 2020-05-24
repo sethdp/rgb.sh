@@ -9,6 +9,6 @@ title: Blog
 <a href="{{post.url}}" class="post">
     <h2>{{ post.title }}</h2>
     <h3>{{ post.date | date: '%B %e %Y' }}</h3>
-    <p>{{ post.desc }}</p>
+    <p>{{ post.excerpt }}</p>
 </a>
 {% endfor %}

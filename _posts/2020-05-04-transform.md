@@ -2,7 +2,7 @@
 title: 3D Matrix Transformations
 styles:
     - assets/transform/transform.css
-desc: An interactive journey through the matrix transformations in the rendering pipeline.
+excerpt: An interactive journey through the matrix transformations in the rendering pipeline.
 ---
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
