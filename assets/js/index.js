@@ -47,11 +47,12 @@ function animate() {
     sunMat.uniforms.time.value += .001;
     planeMat.uniforms.time.value += .001;
     renderer.render(scene, cam);
-    window.requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 }
 animate();
 
 function onResize() {
     renderer.setSize(div.clientWidth, div.clientHeight);
+    drawScene();
 }
 window.addEventListener('resize', onResize);

@@ -12,6 +12,28 @@ excerpt: An interactive journey through the matrix transformations in the render
 
 Before getting into the details of graphics transforms, it's important to mention a few major points of confusion around the subject:
 
+1. *Right-handed vs left-handed coordinate systems.*
+
+    <https://en.wikipedia.org/wiki/Right-hand_rule#Coordinates>
+
+2. *Normalized Device Coordinates (NDC)*
+
+    <https://en.wikipedia.org/wiki/Clip_coordinates>
+
+3. *Row-major vs column-major storage order*
+
+    <https://en.wikipedia.org/wiki/Row-_and_column-major_order>
+
+4. *Matrix layout & multiplication order*
+
+    
+
+5. *GLSL matrix indices*
+
+    GLSL uses `mat[col][row]` rather than `mat[row][col]`.
+
+
+
 1. *You will often hear about OpenGL ("right-handed") vs DirectX ("left-handed") coordinate systems.*
 
     While traditionally world space may have a certain handedness (the direction of the z axis relative to x and y), this is entirely up to the choice of the programmer.
@@ -54,11 +76,10 @@ Before getting into the details of graphics transforms, it's important to mentio
 # Interactive Transforms
 This tool lets you see walk through all of the spaces of the rendering pipeline and see what effect each has.
 I've limited the controls at each stage to be representative of the kinds of transforms you'd perform, but not all-inclusive.
-- The red axis is x, the green axis is y and the blue axis is z.
-- These axes will always be at the origin of the current space.
-- The white wireframe fulcrum is the area that will be visible after projection and clipping. The white wireframe cube is this same area but after projection.
-- The white dot represents the camera's location in the world.
-- The cube is an object in the scene being viewed; I've given it a gradient to distinguish it's orientation (notice that the camera sees the cube from the opposite side we do).
+- The red axis is x, the green axis is y and the blue axis is z. These axes will always be at the origin of the current space.
+- The cube is an object in the scene being viewed; each side has a different color to help distinguish orientation.
+- The camera's viewing outline has three different parts. The blue triangle indicates the up direction, the orange fulcrum is what is actually being seen by the camera and the red pyramid is the region between the near plane and the camera's location. When in Clip and NDC spaces, the frustum projects into a cube which represents what region of the world will be rendered to the screen, while the pyramid becomes an infititely long rectangular prism representing the viewing direction.
+- While in NDC view, the clipped portion of the cube will be darker.
 
 <div id="three" style="width: 100%;"></div>
 
@@ -69,19 +90,9 @@ I've limited the controls at each stage to be representative of the kinds of tra
   <button value="clip">Clip</button>
   <button value="ndc">NDC</button>
   <button value="screen">Screen</button>
+  <br>
+  You can rotate and zoom the camera to get a better look.
 </div>
-
-Scale: <input id="scale_m" type="number" min=".5" max="1.5" step=".1" value="1">
-
-Rotation (°Y): <input id="rot_y_m" type="number" min="0" max="180" step="10" value="0">
-
-Translation (X): <input id="trans_x_m" type="number" min="-2" max="2" step=".1" value="0">
-
-Rotation (°Y): <input id="rot_y_v" type="number" min="90" max="270" step="10" value="180">
-
-Translation (Z): <input id="trans_z_v" type="number" min="-5" max="-2" step="1" value="-4">
-
-Field of View (°Vertical): <input id="fov_p" type="number" min="60" max="120" step="10" value="60">
 
 <div id="spaces">
 <section id="model" markdown="1">

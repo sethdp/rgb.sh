@@ -2,6 +2,8 @@
 ---
 import * as THREE from '/assets/js/three/build/three.module.js';
 import { OrbitControls } from '/assets/js/three/examples/jsm/controls/OrbitControls.js';
+import { GUI } from '/assets/js/three/examples/jsm/libs/dat.gui.module.js';
+
 /*
     Coordinate Spaces
 */
@@ -27,43 +29,54 @@ function setupSpaces() {
 }
 
 /*
-    Parameters
+    dat.GUI
 */
-const params = ['scale_m', 'rot_y_m', 'trans_x_m', 'rot_y_v', 'trans_z_v', 'fov_p'];
-let values = {};
+let div = document.getElementById('three');
 
-function onChangeParam(e) {
-    values[e.target.id] = parseFloat(e.target.value);
-    updateTransforms();
-    drawScene();
-}
+let transModel = {
+    'Trans (X)': 0,
+    'Rot (Y)': 0,
+    'Scale': 1
+};
+let transView = {
+    'Trans (Z)': -5,
+    'Rot (Y)': 180
+};
+let transProj = {
+    'FoV': 60
+};
 
-function setupParams() {
-    for (const i of params) {
-        let p = document.getElementById(i);
-        p.addEventListener('input', onChangeParam);
-        values[i] = parseFloat(p.value);
-    }
-    updateTransforms();
-}
+const gui = new GUI({ autoPlace: false });
+div.append(gui.domElement);
+let model = gui.addFolder('Model');
+model.add(transModel, 'Trans (X)', -2, 2, .1);
+model.add(transModel, 'Rot (Y)', 0, 180);
+model.add(transModel, 'Scale', .5, 1.5);
+let view = gui.addFolder('View');
+view.add(transView, 'Trans (Z)', -5, -2, .1);
+view.add(transView, 'Rot (Y)', 90, 270);
+let proj = gui.addFolder('Projection');
+proj.add(transProj, 'FoV', 60, 120);
 
 /*
-    Three.js
+    three.js
 */
 let renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setClearColor(0x000000, 0);
-let div = document.getElementById('three');
 renderer.setSize(div.clientWidth, div.clientWidth * 9 / 16);
 renderer.setPixelRatio(window.devicePixelRatio);
 div.appendChild(renderer.domElement);
 
 let scene = new THREE.Scene();
 
-let camScene = new THREE.OrthographicCamera(-8, 8, 4.5, -4.5, 1, 100);
-camScene.position.set(10, 5, 5);
+let camScene = new THREE.OrthographicCamera(-4, 4, 2.25, -2.25, 1, 100);
+camScene.position.set(10, 10, 10);
 camScene.lookAt(new THREE.Vector3(0, 0, 0));
 scene.add(camScene);
 let control = new OrbitControls(camScene, renderer.domElement);
+control.minZoom = 1;
+control.maxZoom = 4;
+control.enablePan = false;
 
 let camWorld = new THREE.PerspectiveCamera(60, 16 / 9, 1, 10);
 camWorld.matrixAutoUpdate = false;
@@ -115,22 +128,22 @@ let camMat = camWorld.matrix.clone();
 let axesMat = axes.matrix.clone();
 
 function updateTransforms() {
-    tm.setX(values['trans_x_m']);
-    rm.setFromAxisAngle(y, values['rot_y_m'] * Math.PI / 180);
-    s.setScalar(values['scale_m']);
+    tm.setX(transModel['Trans (X)']);
+    rm.setFromAxisAngle(y, transModel['Rot (Y)'] * Math.PI / 180);
+    s.setScalar(transModel['Scale']);
     m.compose(tm, rm, s);
 
-    rv.setFromAxisAngle(y, values['rot_y_v'] * Math.PI / 180);
-    tv.setZ(values['trans_z_v']);
+    rv.setFromAxisAngle(y, transView['Rot (Y)'] * Math.PI / 180);
+    tv.setZ(transView['Trans (Z)']);
     vi.compose(tv, rv, o);
     v.getInverse(vi);
 
     camWorld.matrix.copy(camMat);
-    camWorld.position.z = values['trans_z_v'];
-    camWorld.rotation.y = values['rot_y_v'] * Math.PI / 180;
+    camWorld.position.z = transView['Trans (Z)'];
+    camWorld.rotation.y = transView['Rot (Y)'] * Math.PI / 180;
     camWorld.updateMatrix();
     camWorld.updateMatrixWorld(true);
-    camWorld.fov = values['fov_p'];
+    camWorld.fov = transProj['FoV'];
     camWorld.updateProjectionMatrix();
     frustum.update();
     p.copy(camWorld.projectionMatrix);
@@ -190,7 +203,6 @@ function drawScene() {
 
 window.onload = function() {
     setupSpaces();
-    setupParams();
     drawScene();
 };
 
@@ -202,3 +214,9 @@ function animate() {
 }
 
 animate();
+
+function onResize() {
+    renderer.setSize(div.clientWidth, div.clientWidth * 9 / 16);
+    drawScene();
+}
+window.addEventListener('resize', onResize);
