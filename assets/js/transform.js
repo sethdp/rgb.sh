@@ -1,7 +1,7 @@
 ---
 ---
-import * as THREE from '/assets/js/three.module.js';
-
+import * as THREE from '/assets/js/three/build/three.module.js';
+import { OrbitControls } from '/assets/js/three/examples/jsm/controls/OrbitControls.js';
 /*
     Coordinate Spaces
 */
@@ -63,6 +63,7 @@ let camScene = new THREE.OrthographicCamera(-8, 8, 4.5, -4.5, 1, 100);
 camScene.position.set(10, 5, 5);
 camScene.lookAt(new THREE.Vector3(0, 0, 0));
 scene.add(camScene);
+let control = new OrbitControls(camScene, renderer.domElement);
 
 let camWorld = new THREE.PerspectiveCamera(60, 16 / 9, 1, 10);
 camWorld.matrixAutoUpdate = false;
@@ -192,3 +193,12 @@ window.onload = function() {
     setupParams();
     drawScene();
 };
+
+function animate() {
+    requestAnimationFrame(animate);
+    control.update();
+    updateTransforms();
+    drawScene();
+}
+
+animate();

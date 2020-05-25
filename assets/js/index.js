@@ -1,6 +1,6 @@
 ---
 ---
-import * as THREE from '/assets/js/three.module.js';
+import * as THREE from '/assets/js/three/build/three.module.js';
 
 let renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setClearColor(0x000000, 0);
