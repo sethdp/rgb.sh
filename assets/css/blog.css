@@ -9,6 +9,9 @@ h1 {
 h2 {
     margin: 2rem 0 0;
 }
+h3 {
+    color: #fafcff;
+}
 
 .desc {
     margin-bottom: 4rem;
@@ -16,6 +19,7 @@ h2 {
 
 a {
     font-family: "Monaco", monospace;
+    font-size: 75%;
     word-wrap: break-word;
 }
 

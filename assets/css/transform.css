@@ -5,9 +5,14 @@ canvas {
 }
 #controls {
     text-align: center;
+    margin-bottom: 1rem;
 }
 #controls * {
     font-size: 1rem;
+}
+
+#three {
+    margin-top: 1rem;
 }
 
 /* dat.GUI */
