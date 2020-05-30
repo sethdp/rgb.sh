@@ -7,102 +7,6 @@ import numpy as np
 from pydmd import DMD, HODMD
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-OUTPUT_DIR = 'assets/dmd/'
-
-mpl.rcParams.update({
-        'axes.labelsize': 'x-large',
-        'figure.dpi': 300,
-        'figure.figsize': (6, 4),
-        'figure.titlesize': 'xx-large',
-        'image.cmap': 'cool'
-})
-
-def make_dynamic(steps_cycle, radius, len=20):
-    phase = 2 * math.pi / steps_cycle
-    return (radius * (math.cos(phase) + 1j * math.sin(phase))) ** np.arange(len)
-
-# %%
-def plot_recon(ax, mode, dynamic, min_val, max_val, line, color, text):
-    divider = make_axes_locatable(ax)
-
-    aMode = divider.append_axes('left', '5%')
-    aMode.set_ylim(-.5, 19.5)
-    aMode.invert_yaxis()
-    aMode.tick_params(bottom=False, left=False,
-                      labelbottom=False, labelleft=False)
-    aMode.imshow(mode.reshape(20, 1), vmin=min_val, vmax=max_val)
-    aMode.set_ylabel('Mode ' + text)
-
-    aDyn = divider.append_axes('bottom', '20%')
-    aDyn.set_xlim(-.5, 19.5)
-    aDyn.tick_params(bottom=False, left=False,
-                     labelbottom=False, labelleft=False)
-    aDyn.plot(dynamic, line, color=color)
-    aDyn.set_xlabel('Dynamic ' + text)
-
-    X = mode.reshape(20, 1).dot(dynamic.reshape(1, 20)).real
-    ax.imshow(X, vmin=min_val, vmax=max_val)
-    ax.tick_params(bottom=False, left=False,
-                   labelbottom=False, labelleft=False)
-
-dynamic1 = make_dynamic(20, .95)
-dynamic2 = dynamic1.real - 1j * dynamic1.imag
-mode1 = (math.cos(2 * math.pi / 20) + 1j *
-         math.sin(2 * math.pi / 20)) ** np.arange(20)
-mode2 = mode1.real - 1j * mode1.imag
-X1 = mode1.reshape(20, 1).dot(dynamic1.reshape(1, 20)).real
-X2 = mode2.reshape(20, 1).dot(dynamic2.reshape(1, 20)).real
-X = X1 + X2
-min_val = np.amin(X)
-max_val = np.amax(X)
-
-fig, ax = plt.subplots()
-ax.imshow(X)
-fig.suptitle('Input')
-ax.set_xlabel('$t$')
-ax.set_ylabel('$f(t)$')
-plt.savefig(OUTPUT_DIR + 'dmd_input.png')
-
-fig, ax = plt.subplots(2, 2, figsize=(6, 6))
-plot_recon(ax[0, 0], mode1.real, dynamic1.real, min_val, max_val, '-', 'cyan', '1, Real')
-plot_recon(ax[1, 0], -mode1.imag, dynamic1.imag, min_val, max_val, ':', 'magenta', '1, Imag')
-plot_recon(ax[0, 1], mode2.real, dynamic2.real, min_val, max_val, '-', 'cyan', '2, Real')
-plot_recon(ax[1, 1], -mode2.imag, dynamic2.imag, min_val, max_val, ':', 'magenta', '2, Imag')
-fig.suptitle('Real Components of Reconstructions')
-plt.savefig(OUTPUT_DIR + 'dmd_recon.png')
-
-# %%
-a = make_dynamic(19, 1)
-b = make_dynamic(38, 1.01)
-c = make_dynamic(19, .95)
-
-fig, ax = plt.subplots()
-ax.set_aspect(1)
-ax.plot(a.real, a.imag, 'x:y', label=r'$(1, 2\pi/19)$')
-ax.plot(b.real, b.imag, 'x:c', label=r'$(1.01, 2\pi/38)$')
-ax.plot(c.real, c.imag, 'x:m', label=r'$(.95, 2\pi/19)$')
-ax.add_artist(plt.Circle((0, 0), 1, color='white', fill=False))
-ax.axis('equal')
-ax.set_xlim(-1.6, 1.6)
-ax.legend()
-ax.set_xlabel('Real')
-ax.set_ylabel('Imaginary')
-ax.set_title('Dynamics')
-plt.savefig(OUTPUT_DIR + 'dyn_circle.png')
-
-fig, ax = plt.subplots(2, 1, True, gridspec_kw={'hspace': 0})
-ax[0].plot(a.real, 'x:y')
-ax[0].plot(b.real, 'x:c')
-ax[0].plot(c.real, 'x:m')
-ax[1].plot(a.imag, 'x:y')
-ax[1].plot(b.imag, 'x:c')
-ax[1].plot(c.imag, 'x:m')
-ax[1].set_xlabel('t')
-ax[0].set_ylabel('Real')
-ax[1].set_ylabel('Imag')
-ax[1].set_xticks([0, 5, 10, 15, 20])
-plt.savefig(OUTPUT_DIR + 'dyn_time.png')
-
 # %%
 N = 64
 wave = np.sin(np.arange(N) * 2 * math.pi * 2 / N)
@@ -220,3 +124,49 @@ ax.legend(['FFT', 'FFT Ext.', 'DMD', 'DMD Ext.'])
 plt.savefig(OUTPUT_DIR + 'exp_recon.png')
 
 #%%
+
+'''
+
+<!--
+## DMD versus the Fourier Transform
+
+Using the HODMD *add link*, we can compare the DMD to the FFT on 1D data. This highlights how DMD is different that the Fourier Transform.
+
+$$
+\begin{aligned}
+x_{DMD} & = & \color{red}{\mathbf{\phi} b} & \color{green}{\lambda^\mathbf{t}} \\
+x_{FFT} & = & \color{red}{\frac{1}{N} A_k} & \color{green}{(e^{2 \pi i \frac{k}{N}})^\mathbf{t}}
+\end{aligned}
+$$
+
+$$ A_k $$ - amplitude of kth frequency
+
+$$ k / N $$ - relative frequency of kth element
+
+### Periodic Input
+
+On periodic data, the DMD is able to extract the same dynamics as the FFT.
+
+![Periodic Input](/assets/dmd/period_input.png)
+![Periodic DMD Eigenvalues](/assets/dmd/period_dmd.png)
+![Periodic FFT Frequencies](/assets/dmd/period_fft.png)
+![Periodic Reconstruction](/assets/dmd/period_recon.png)
+
+Both algorithms find a pair of dynamics at a single frequency.
+
+### Exponential Input
+
+On an exponentially decaying system, the DMD better describes the dynamics.
+Note that this is a cherry-picked example to show when DMD works better.
+
+![Exponential Input](/assets/dmd/exp_input.png)
+![Exponential DMD Eigenvalues](/assets/dmd/exp_dmd.png)
+![Exponential FFT Frequencies](/assets/dmd/exp_fft.png)
+
+See that the FFT requires many more frequencies to recontruct the system (ignoring that we could approximate it with only a few largest), while the DMD still finds a single pair of dynamics.
+
+![Exponential Reconstruction](/assets/dmd/exp_recon.png)
+
+Here we see how the DMD and FFT vary in the way they describe our system; the DMD better predicts the exponential decay of the wave.
+-->
+'''

@@ -5,16 +5,16 @@ title: College Projects
 <div class="proj">
     <div class="pimg">
         <div>
-            <h2>{{ project.name }}</h2>
-            <h3>{{ project.sub }}</h3>
+            <h2 class="main">{{ project.name }}</h2>
+            <h3 class="main">{{ project.sub }}</h3>
         </div>
         <div>
             {% if project.arxiv %}<a href="https://arxiv.org/abs/{{ project.arxiv }}">ArXiv</a>{% endif %}
             {% if project.github %}<a href="https://github.com/pens/{{ project.github }}">GitHub</a>{% endif %}
             {% if project.youtube %}<a href="https://youtu.be/{{ project.youtube }}">YouTube</a>{% endif %}
         </div>
-        <img src="assets/img/projects/{{ project.img }}"/>
+        <img class="main" src="assets/img/projects/{{ project.img }}"/>
     </div>
-    <p>{{ project.desc }}</p>
+    <p class="main">{{ project.desc }}</p>
 </div>
 {% endfor %}

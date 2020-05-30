@@ -7,8 +7,8 @@ title: Blog
 
 {% for post in site.posts %}
 <a href="{{post.url}}" class="post">
-    <h2>{{ post.title }}</h2>
-    <h3>{{ post.date | date: '%B %e %Y' }}</h3>
-    <p>{{ post.excerpt }}</p>
+    <h2 class="main">{{ post.title }}</h2>
+    <h3 class="main">{{ post.date | date: '%B %e %Y' }}</h3>
+    <p class="main">{{ post.excerpt }}</p>
 </a>
 {% endfor %}
