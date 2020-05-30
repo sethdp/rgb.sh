@@ -60,13 +60,13 @@ DVDs store their chapters as separate .VOB files. In some cases, I wanted these 
 {% include digitization/merge.sh %}
 ```
 
-On Mac I used QuickTime Player (Edit > Trim ...) to manually trim the start and end of each video after digitized and converted to .mp4. There is a good opportunity here for some sort of automatic trimming based on video & audio analyis.
+On Mac I used QuickTime Player (Edit > Trim ...) to manually trim the start and end of each video after digitized and converted to .mp4. There is a good opportunity here for some sort of automatic trimming based on video & audio analysis.
 
 # Audio Cassettes
 
-There were a couple of Compact Cassettes (audio tapes) my parents wanted digitized. I recorded these into the computer using the same capture card as for video, but the software didn't have a mode for audio only, and didn't support mono which all of these tapes were made in.
+There were a couple of Compact Cassettes (audio tapes) my parents wanted digitized. I recorded these into the computer using the same capture card as for video. The software did not have an mono, audio-only mode, so I had to do this conversion myself.
 
-ffmpeg's ffprobe tool confirmed the audio was aac, so I chose to copy out the audio stream into a .m4a (aac) audio file. The pan filter let me save only the left audio channel.
+ffmpeg's ffprobe tool confirmed the audio was in aac format, so I chose to copy out the audio stream into a .m4a (aac) audio file. The pan filter let me save only the left audio channel.
 
 ```bash
 {% include digitization/cassettes.sh %}
@@ -82,7 +82,7 @@ I found a couple of old school assignments where I had either lost the digital o
 {% include digitization/document.sh %}
 ```
 
-I also have a bunch of art I made back in high school. Smaller pieces were also scanned using the flatbed. Large artwork was photographed with my DSLR on a tripod with as even of lighting as possible. I then trimmed the photos down to fit the art.
+I also have a bunch of art I made back in high school. Smaller pieces were scanned using the flatbed. Large artwork was photographed with my DSLR on a tripod with as even of lighting as possible. I then trimmed the photos down to fit the art.
 
 # Email
 
@@ -93,7 +93,7 @@ While I didn't care about saving the emails outside of just holding onto the .mb
 1. *Local Folders (right click) > ImportExportTools > Import mbox file.*
 2. *Local Folders (right click) > ImportExportTools > Export all messages in the folder > HTML format (with attachments).*
 
-From here, I wrote a script to organize all of the attachments so that I could quickly find the attachments I care about.
+From here, I wrote a script to organize all of the attachments so that I could quickly find the ones I wanted.
 
 ```bash
 {% include digitization/email.sh %}
