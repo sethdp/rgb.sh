@@ -12,7 +12,7 @@ The first stage of this process was to collect all of the media and whatever I n
 
 All of the below scripts were written for [Bash 4](https://www.gnu.org/software/bash/manual/) and ran on a Mac. I relied on [shellharden](https://github.com/anordal/shellharden/blob/master/how_to_do_things_safely_in_bash.md) to improve these scripts. I hope these can be useful to others, but it should go without saying to use them at your own risk.
 
-# Discs
+## Discs
 
 We had created many computer backups over the years as we upgraded our PC's. This resulted in a large stack of CD's and DVD's that I would need to copy to my Mac and dig through. Getting the data off was not challenging, but *tedious*. I wrote the below to automatically copy all data off of the disc and eject it once finished, so that I could ~~watch TV~~ "be productive" while using the least effort to set up and finish the copy.
 
@@ -24,9 +24,9 @@ I did find a few discs that macOS could not read. I assumed these were corrupt, 
 
 Each time that we moved my mom to a new laptop, we would copy the entirety of her Desktop, Photos and other user folders to her new Desktop. This would also copy over old backups, making a 3 or 4 level deep hierarchy of Desktop and backup folders on the latest backups. These backups held a lot of junk files that I didn't care about either. This, in combination with the many different backup discs, resulted in a lot of duplicated files, many of which I had no desire to keep. At this point, I used old fashioned *manual labor* to sort through the contents.
 
-# Photos
+## Photos
 
-## Digital
+### Digital Photos
 
 Having sorted out all of the photos copied from discs and computer backups, I had ended up with a huge number of duplicates. [findimagedupes](https://github.com/opennota/findimagedupes) worked great to eliminate most of the duplicates. While a few copies remained, most still had their EXIF data allowing me to select the ones with larger file sizes (and presumably resolution) by hand. [ExifTool](https://www.sno.phy.queensu.ca/~phil/exiftool/) allowed me to sort all of my photos safely, and find any images with identical EXIF data. I used the following script to organize all of the photos into a consistent format, which I could then organize by event or location later.
 
@@ -34,19 +34,19 @@ Having sorted out all of the photos copied from discs and computer backups, I ha
 {% include digitization/photos.sh %}
 ```
 
-## Film
+### Film Photos
 
 As of this point, I have still not digitized our film photos. My mom shot film from way before I was born until well into the 2000's. We also have a bunch of prints from my grandparents and other relatives. This leaves me with a literal mountain of photos to digitize, on top of the original film negatives and even some slides.
 
 At least it seems that all of my mom's film photos were printed so we can just scan them into the computer; I even bought a specialty roller scanner just for 4"x5" prints, as otherwise it would probably take an eternity on our cheap multifunction printer/scanner. For large prints from my grandparents we will have to use either the bed scanner or a camera mounted to a tripod.
 
-# Videos
+## Videos
 
-## Tape
+### Tapes
 
 For our home movies I had to digitize VHS, Video8 and a single VHS-C. I processed all of these by recording them being played back through a USB capture card. This was a relatively lengthy process, as the videos had to be played at normal speed, and I couldn't automate the capture. I used our VHS player and a camcorder I bought off eBay to play back our tapes. I bought a VHS-C to VHS adapter just for that single tape which, of course, turned out to already have been copied to VHS. The first Video8 camcorder I bought broke after only a couple of recordings. The second time around, I bought a high-end model made much more recently with some image correction and an S-Video output.
 
-## Digital
+### Digital Videos
 
 I gathered our digital videos from disc backups and from my parents' current computers. These were saved in a bunch of different formats such as .MOV, .VOB and .wmv, so I opted to convert them all to .mp4 with [FFmpeg](https://ffmpeg.org/documentation.html).
 
@@ -62,7 +62,7 @@ DVDs store their chapters as separate .VOB files. In some cases, I wanted these 
 
 On Mac I used QuickTime Player (Edit > Trim ...) to manually trim the start and end of each video after digitized and converted to .mp4. There is a good opportunity here for some sort of automatic trimming based on video & audio analysis.
 
-# Audio Cassettes
+## Audio Cassettes
 
 There were a couple of Compact Cassettes (audio tapes) my parents wanted digitized. I recorded these into the computer using the same capture card as for video. The software did not have an mono, audio-only mode, so I had to do this conversion myself.
 
@@ -74,7 +74,7 @@ ffmpeg's ffprobe tool confirmed the audio was in aac format, so I chose to copy 
 
 As with videos, I used QuickTime Player to trim the audio recordings after they were processed.
 
-# Schoolwork
+## Schoolwork
 
 I found a couple of old school assignments where I had either lost the digital original, or were never on the computer in the first place. My parent's multifunction printer/scanner was the easiest way for me to scan the documents, but the output was a separate .jpg file per page. [ImageMagick](https://www.imagemagick.org/script/command-line-processing.php)'s convert tool allowed me to combine these into a single .pdf.
 
@@ -84,7 +84,7 @@ I found a couple of old school assignments where I had either lost the digital o
 
 I also have a bunch of art I made back in high school. Smaller pieces were scanned using the flatbed. Large artwork was photographed with my DSLR on a tripod with as even of lighting as possible. I then trimmed the photos down to fit the art.
 
-# Email
+## Emails
 
 I was able to track down a couple old email accounts using the data off of the backup discs. While my old Hotmail had long since had its contents deleted, I was able to download all of my data from Gmail using [Google Takeout](https://takeout.google.com/settings/takeout/). This also happened to include a lot of high school assignments and photos. Afterwards, I closed down all of these accounts, as well as any others I had regained access to.
 
@@ -99,6 +99,6 @@ From here, I wrote a script to organize all of the attachments so that I could q
 {% include digitization/email.sh %}
 ```
 
-# Conclusion
+## Conclusion
 
 After all of this, I copied all of the data to a USB hard drive as well as the cloud. I am currently going through and cleaning up the files by hand as I find time. I'd eventually like a neatly organized cloud folder of videos, pictures, etc., but at least the critical issue of the media degrading is taken care of.
