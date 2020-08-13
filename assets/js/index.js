@@ -21,8 +21,8 @@ let sunMat = new THREE.ShaderMaterial({
     uniforms: {
         time: { value: 1.0 }
     },
-    vertexShader: `{% include sun.vert %}`,
-    fragmentShader: `{% include sun.frag %}`
+    vertexShader: `{% include home/sun.vert %}`,
+    fragmentShader: `{% include home/sun.frag %}`
 });
 let sun = new THREE.Mesh(sunGeo, sunMat);
 sun.position.z = -5;
@@ -36,8 +36,8 @@ let planeMat = new THREE.ShaderMaterial({
     uniforms: {
         time: { value: 1.0 }
     },
-    vertexShader: `{% include plane.vert %}`,
-    fragmentShader: `{% include plane.frag %}`
+    vertexShader: `{% include home/plane.vert %}`,
+    fragmentShader: `{% include home/plane.frag %}`
 });
 let plane = new THREE.Mesh(planeGeo, planeMat);
 plane.rotation.x = -Math.PI / 2

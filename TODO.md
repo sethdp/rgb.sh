@@ -6,7 +6,7 @@ General:
 - Clean up css
 - Text consistency (li v p) & readability
 - Consider minimizers
-- Update about me & experience
+- Update experience
 - Project max width?
 - Clean up html
 
@@ -16,7 +16,6 @@ Blog:
 - Mediocrity
 - Physical Distance
 - Travel / Burnout
-- Remove dmd_old.py
 - Update on scanning photos?
 
 Transform:

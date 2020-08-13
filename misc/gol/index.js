@@ -84,13 +84,6 @@ window.onload = function() {
         return prog; 
     };
 
-    var proj = mat4.create();
-    mat4.perspective(proj, 1 / Math.tan(Math.PI / 4), window.innerWidth / window.innerHeight, .01, 100);
-
-    window.addEventListener('resize', function() {
-        mat4.perspective(proj, 1 / Math.tan(Math.PI / 4), window.innerWidth / window.innerHeight, .01, 100);
-    });
-
     const prog = MakeShaderProgram(VS, FS);
     var aPos = gl.getAttribLocation(prog, 'aPos');
     var uSampler = gl.getUniformLocation(prog, 'uSampler');

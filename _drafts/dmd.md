@@ -18,14 +18,14 @@ This is useful in analyzing changing motion, for example in fluid flows.
 It also can be used to remove the background from a video, by separating the high-growth or decay foreground from the relatively constant background.
 [Schmid](https://hal-polytechnique.archives-ouvertes.fr/hal-01020654/file/DMS0022112010001217a.pdf) and [Grosek & Kutz](https://arxiv.org/pdf/1404.7592.pdf) are great papers if you want to learn more.
 
-The source code to the figures on this page is available [here](/assets/src/dmd.py). I recommend [PyDMD](https://github.com/mathLab/PyDMD) if you'd like to play around with the DMD.
+The source code to the figures on this page is available [here](/assets/blog/dmd/dmd.py). I recommend [PyDMD](https://github.com/mathLab/PyDMD) if you'd like to play around with the DMD.
 
 ## Overview
 
 Rather than diving into the details of how you calculate the DMD, I think it's better to start by treating it as a black box.
 Instead, I will show you what you can do with the DMD.
 
-The dynamic mode decomposition turns an $$ m{\times}n $$ input matrix $$ \mathbf{X} $$ into dynamic modes $$ \mathbf{\Phi} $$ and eigenvalues $$ \mathbf{\lambda} $$, as well as the optional initial amplitudes $$ \mathbf{b} $$:
+The dynamic mode decomposition turns an $$ m{\times}n $$ input matrix $$ \mathbf{X} $$ into dynamic modes $$ \mathbf{\Phi} $$ and eigenvalues $$ \mathbf{\lambda} $$, as well as the optional initial mode amplitudes $$ \mathbf{b} $$:
 
 $$ \mathbf{X} \rightarrow \mathbf{\Phi}, \mathbf{\lambda} [, \mathbf{b} ]$$
 
@@ -33,7 +33,7 @@ Given these outputs, we can reconstruct the original input as such:
 
 $$ \mathbf{X}_{DMD} = \mathbf{\Phi} \mathbf{B} \mathbf{\lambda}^{\mathbf{t}} $$
 
-where $$ \mathbf{B} $$ is an $$ n{-}1{\times}n{-}1 $$ matrix with $$ \mathbf{b} $$ as its diagonal, $$ \mathbf{\lambda} $$ is the diagonal of $$ \mathbf{\Lambda} $$ and $$ \mathbf{t} = [0 \dots n{-}1] $$. $$ \mathbf{\lambda}^{\mathbf{t}} $$ a [Vandermonde matrix](https://en.wikipedia.org/wiki/Vandermonde_matrix) of $$ \lambda $$.
+where $$ \mathbf{B} $$ is an $$ n{-}1{\times}n{-}1 $$ diagonal matrix formed from $$ \mathbf{b} $$ and $$ \mathbf{t} = [0 \dots n{-}1] $$. $$ \mathbf{\lambda}^{\mathbf{t}} $$ a [Vandermonde matrix](https://en.wikipedia.org/wiki/Vandermonde_matrix) of $$ \lambda $$.
 There are a lot of variations on how to represent this reconstruction (i.e. sum of matrix multiplications versus just matrix multiplications), but they exist for contextual convenience and will have the same result.
 
 ### Terminology
@@ -49,7 +49,7 @@ Before getting into the details of DMD, let's go over the terminology.
 - [Mode](https://en.wikipedia.org/wiki/Normal_mode#Mode)\\
     Moving (spatial) part of the system at fixed frequency
 - Dynamic Mode / DMD Mode\\
-    Modes in DMD; amplitude can change in time
+    Modes in DMD; amplitude can change exponentially with time
 - DMD Eigenvalue\\
     Describes rate and direction of mode amplitude change in time
 - Initial amplitudes\\
@@ -77,7 +77,7 @@ By removing these outer products from the final reconstruction, we are left with
 
 ## Examples
 
-![Input](/assets/img/dmd/input.png)
+![Input](/assets/blog/dmd/input.png)
 
 Let's try out the DMD on a synthetic example.
 We will have two complex-conjugate modes.
@@ -86,7 +86,7 @@ $$ \mathbf{X}_{DMD} = \color{red}{\mathbf{\Phi} \mathbf{B}} \color{green}{\mathb
 
 the modes and amplitudes (shown in red) will be shown as colors while the dynamics (shown in green) will be waves.
 
-![Example](/assets/img/dmd/recon.png)
+![Example](/assets/blog/dmd/recon.png)
 
 For any given pixel in the mode / dynamic pair, the value is that of the same row of the mode times the column of the wave.
 
@@ -100,18 +100,18 @@ These could all be pixels or waves, but I think the pixel better correlates with
 ### Background Subtraction
 
 <video width="640" controls>
-    <source src="/assets/video/dmd/back_sub.mp4" type="video/mp4">
-    <img src="/assets/img/dmd/back_sub.png">
+    <source src="/assets/dmd/dmd/back_sub.mp4" type="video/mp4">
+    <img src="/assets/blog/dmd/back_sub.png">
 </video>
 
 This is the background from the first frame, but it will stay relatively steady because of the low-energy of the corresponding mode.
 
 Notice how the foreground is additive with the background, rather than containing the entirety of the foreground object.
-If we wanted to use this in practice for video segmentation, we'd want to do some kind of filtering first.
+If we wanted to use this in practice for video segmentation, we'd want to do some kind of thresholding after the DMD.
 
 ## Eigenvalues & Dynamics
 
-![Eigenvalues](/assets/img/dmd/eigs.png)
+![Eigenvalues](/assets/blog/dmd/eigs.png)
 
 To calculate the Fourier "modes"?
 

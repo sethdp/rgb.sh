@@ -3,7 +3,7 @@ title: Depression
 excerpt: About depression.
 ---
 
-![Depression](/assets/img/depression/dep.jpg)
+![Depression](/assets/blog/depression/dep.jpg)
 *Depression, visualized.*
 
 For the majority of my life, I've dealt with depression.

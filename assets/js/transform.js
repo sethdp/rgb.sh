@@ -94,8 +94,8 @@ let mat = new THREE.ShaderMaterial({
         clip: { value: false }
     },
     vertexColors: true,
-    vertexShader: `{% include transform/transform.vert %}`,
-    fragmentShader: `{% include transform/transform.frag %}`
+    vertexShader: `{% include blog/transform/transform.vert %}`,
+    fragmentShader: `{% include blog/transform/transform.frag %}`
 });
 let cube = new THREE.Mesh(geo, mat);
 cube.matrixAutoUpdate = false;
