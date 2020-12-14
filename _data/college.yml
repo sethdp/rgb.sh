@@ -1,4 +1,3 @@
----
 - name: "Streaming SVD & DMD"
   sub: "Research Project"
   desc: "A streaming version of the Singular Value Decomposition. This then enabled a streaming version of the Dynamic Mode Decomposition, allowing for real-time background subtraction (among other uses)."
@@ -27,4 +26,3 @@
   img: harp.jpg
   github: Kinect-Laser-Harp
   youtube: cuG4zneXyhA
----

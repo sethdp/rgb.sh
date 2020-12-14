@@ -63,7 +63,7 @@ h3.main {
 }
 
 p {
-    font-size: 120%;
+    font-size: 100%;
 }
 p.main {
     line-height: initial;
@@ -273,7 +273,7 @@ p {
 }
 .postbody {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 640px;
 }
 
 .desc {
