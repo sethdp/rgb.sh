@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2017-20 Seth Pendergrass. See LICENSE.
 */
-
+/* General */
 html {
     background-color: #a8adb5;
     color: #fafcff;
@@ -11,35 +11,11 @@ html {
 body {
     margin: 1rem;
 }
-
-a, a:visited {
-    color: unset;
-    word-break: break-word;
-}
-a:hover {
-    background-color: #fafcff;
-    color: #000;
-}
-
-nav {
-    font-family: 'Monaco', monospace;
-}
-ul {
-    margin: 0;
-}
-/* This should be a class */
-nav li {
-    list-style-type: none;
-    margin-top: 2rem;
-}
-
 h1 {
     font-family: 'Futura', sans-serif;
     font-size: 4em;
     font-weight: normal;
     text-transform: lowercase;
-}
-h1.main {
     line-height: .75;
     margin: 0 0 4rem;
 }
@@ -48,8 +24,6 @@ h2 {
     font-size: 1.5rem;
     font-weight: normal;
     line-height: 1;
-}
-h2.main {
     margin: 0;
 }
 h3 {
@@ -57,33 +31,54 @@ h3 {
     font-size: 1rem;
     font-weight: normal;
     margin: 0;
-}
-h3.main {
     color: #d3d8e0;
 }
-
+a, a:visited {
+    color: unset;
+    word-break: break-word;
+}
+a:hover {
+    background-color: #fafcff;
+    color: #000;
+}
 p {
     font-size: 100%;
-}
-p.main {
     line-height: initial;
     margin: 0;
 }
-
-img.main {
-    margin: inherit;
+header {
+    margin-bottom: 2rem;
 }
-/* Home */
-.i {
+footer {
+    margin-top: 2rem;
+}
+
+/* Index */
+h1.idx {
+    font-size: 8rem;
+    position: fixed;
+    right: 1rem;
+    bottom: 0rem;
+    margin: 0;
+}
+h2.idx {
     background-color: rgba(0, 0, 0, .8);
     display: inline;
 }
-.nav {
+nav.idx {
+    font-family: 'Monaco', monospace;
     float: right;
     text-align: right;
     margin: 0;
 }
-#gl {
+nav.idx ul {
+    margin: 0;
+}
+nav.idx li {
+    list-style-type: none;
+    margin-top: 2rem;
+}
+canvas#gl {
     width: 640px;
     height: 360px;
     left: 10%;
@@ -92,16 +87,15 @@ img.main {
     z-index: -1; /* allow selecting link when overlapped */
 }
 
-#title {
-    font-size: 8rem;
-    position: fixed;
-    right: 1rem;
-    bottom: 0rem;
-    margin: 0;
+/* About Me */
+div.about > * {
+    background-color: rgba(0, 0, 0, .8);
+    width: fit-content;
+    max-width: 800px;
+    margin: 0 0 1rem;
+    font-style: normal;
 }
-
-/* About */
-.me {
+img.me {
     float: right;
     image-rendering: pixelated;
     width: 40%;
@@ -110,7 +104,7 @@ img.main {
     box-shadow: -10px 0 0 -5px red, 5px 8px 0 -5px blue, 5px -8px 0 -5px lime;
     margin: 3px 0 3px 5px;
 }
-.grid {
+img.grid {
     position: fixed;
     top: 20%;
     left: 10%;
@@ -120,22 +114,16 @@ img.main {
     width: 80%;
     z-index: -1;
 }
-.about p {
-    background-color: rgba(0, 0, 0, .8);
-    width: fit-content;
-    max-width: 800px;
-    margin: 0 0 1rem;
-}
 
 /* Experience */
-.job {
-    margin-top: 2rem;
+div.job {
+    margin: 2rem 0;
 }
-.job > * {
+div.job * {
     background-color: rgba(0, 0, 0, .8);
     width: fit-content;
 }
-#mask {
+img.mask {
     position: fixed;
     right: 0;
     bottom: 0;
@@ -143,88 +131,74 @@ img.main {
     z-index: -1;
 }
 
-/* College */
-.proj {
-    width: fit-content;
-}
-.proj:nth-of-type(2n) {
-    margin-left: auto;
-}
-.proj:nth-of-type(2n+1) {
-    margin-right: auto;
-}
-
-.pimg {
-    position: relative;
-}
-.pimg > img {
-    display: block;
-    max-width: 100%;
-    width: 600px;
-}
-.pimg > div {
-    position: absolute;
-}
-.pimg > div > * {
-    background-color: rgba(0, 0, 0, .8);
-    width: fit-content;
-}
-.pimg a {
-    /* make height correct */
-    display: inline-block;
-    margin-left: 2rem;
-}
-.pimg a:hover {
-    background-color: #fafcff;
-}
-.pimg > div:first-of-type {
-    top: 1rem;
-    left: 1rem;
-}
-.pimg > div:last-of-type {
-    bottom: 1rem;
-    right: 1rem;
-}
-
-.proj p {
-    background-color: rgba(0, 0, 0, .8);
-    margin-bottom: 2rem;
-    max-width: 600px;
-}
-
 /* Blog */
-#t1, #t2, #t3 {
-    width: 250px;
-    position: fixed;
-    z-index: -1;
-}
-#t1 {
-    right: 5%;
-    top: 5%;
-}
-#t2 {
-    left: 30%;
-    top: 40%;
-}
-#t3 {
-    right: 20%;
-    bottom: 5%;
-}
-
-.post {
+a.post {
     display: block;
     margin: 2rem 0;
     text-decoration: none;
 }
-.post > * {
+a.post * {
     background-color: rgba(0, 0, 0, .8);
     width: fit-content;
 }
-.post:hover > * {
+a.post:hover * {
     background-color: #fafcff;
     color: #000;
 }
+img.t {
+    width: 250px;
+    position: fixed;
+    z-index: -1;
+}
+img.t1 {
+    right: 5%;
+    top: 5%;
+}
+img.t2 {
+    left: 30%;
+    top: 40%;
+}
+img.t3 {
+    right: 20%;
+    bottom: 5%;
+}
 
+/* College Projects */
+div.proj {
+    margin: 2rem 0;
+    width: fit-content;
+}
+div.proj:nth-of-type(2n) {
+    margin-left: auto;
+}
+div.proj:nth-of-type(2n+1) {
+    margin-right: auto;
+}
+div.proj a:hover {
+    background-color: #fafcff;
+}
+div.proj p {
+    background-color: rgba(0, 0, 0, .8);
+    max-width: 600px;
+}
+div.prev {
+    position: relative;
+}
+div.prev header {
+    position: absolute;
+}
+div.prev header * {
+    display: block;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, .8);
+}
+div.prev img {
+    display: block;
+    max-width: 100%;
+    width: 600px;
+}
+
+/* Responsiveness */
 @media screen and (max-width: 600px) {
     body {
         margin: .25rem;
@@ -235,75 +209,58 @@ img.main {
     h2 {
         font-size: 1.2rem;
     }
-
-    #title {
+    /* Index */
+    h1.idx {
         font-size: 6rem;
     }
-    #gl {
+    canvas#gl {
         width: 320px;
         height: 180px;
-    }
-
-    .pimg > div:first-of-type {
-        top: 0;
-        left: 0;
-    }
-    .pimg > div:last-of-type {
-        right: 0;
-        bottom: 0;
     }
 }
 
 /* Blog Posts */
-
-h1 {
-    margin: 6rem 0 2rem;
-    line-height: 1;
-}
-h2 {
-    margin: 2rem 0 0;
-}
-h3 {
-    color: #fafcff;
-}
-
-p {
-    line-height: 1.4;
-    margin: 1rem 0;
-}
-.postbody {
+article {
     margin: 0 auto;
     max-width: 640px;
 }
-
-.desc {
+article h1 {
+    margin: 6rem 0 2rem;
+    line-height: 1;
+}
+article h2 {
+    margin: 2rem 0 0;
+}
+article h3 {
+    color: #fafcff;
+}
+article p {
+    line-height: 1.4;
+    margin: 1rem 0;
+}
+article p.excerpt {
     margin-bottom: 4rem;
 }
-
-p > code {
-    font-size: 1rem;
-}
-
-pre {
+article pre {
     overflow-x: scroll;
     padding: 1rem;
 }
-
-img, video {
+article code {
+    font-size: 80%;
+}
+article img, article video {
     display: block;
     margin: 2rem auto .5rem;
     max-width: 640px;
     width: 100%;
 }
-
-img + em {
+article img + em {
     display: block;
     font-size: .8em;
     margin: .5rem auto 2rem;
     max-width: 640px;
     width: 100%;
 }
-
 .highlight .hll { background-color: #49483e }
 .highlight  { background: #272822; color: #f8f8f2 }
 .highlight .c { color: #75715e } /* Comment */

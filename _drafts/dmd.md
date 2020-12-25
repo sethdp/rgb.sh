@@ -1,6 +1,7 @@
 ---
 title: Dynamic Mode Decomposition
 excerpt: A brief introduction to the dynamic mode decomposition.
+math: true
 ---
 
 ## TODO

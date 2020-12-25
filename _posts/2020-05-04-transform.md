@@ -5,6 +5,7 @@ scripts:
 styles:
     - transform.css
 excerpt: An interactive journey through the matrix transformations of the rendering pipeline.
+math: true
 ---
 
 At their most basic, [transformation matrices](https://en.wikipedia.org/wiki/Transformation_matrix) just convert coordinates from one space to another.

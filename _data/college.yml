@@ -1,28 +1,28 @@
 - name: "Streaming SVD & DMD"
   sub: "Research Project"
-  desc: "A streaming version of the Singular Value Decomposition. This then enabled a streaming version of the Dynamic Mode Decomposition, allowing for real-time background subtraction (among other uses)."
+  desc: "Streaming versions of the Singular Value Decomposition and Dynamic Mode Decomposition, allowing for real-time background subtraction (among other uses)."
   img: dmd.png
   arxiv: 1612.07875
   github: libssvd
 - name: Eigenfish
   sub: "ML Fish Detector"
-  desc: "An ML-based Python package for detecting fish in low-quality underwater video for the Department of Energy."
+  desc: "ML-based Python package for detecting fish in low-quality underwater video."
   img: fish.jpg
   github: eigenfish
 - name: Tree Dance
-  sub: "Real-time Rendering Demo"
-  desc: "From-scratch Direct3D renderer showcasing modern rendering techniques, as well as a custom model importer from FBX."
+  sub: "Real-time Renderer"
+  desc: "Direct3D renderer showcasing modern rendering techniques and custom asset importers."
   img: tree.jpg
   github: Tree-Dance
   youtube: XXFPnMiZDZg
 - name: Titan Fightin
   sub: "VR Capstone"
-  desc: "My VR capstone team project. Demonstrates asymmetic multiplayer in Virtual Reality."
+  desc: "VR capstone team project. Demonstrates asymmetric multiplayer in Virtual Reality."
   img: titan.jpg
   youtube: 4vmfLjW-_D0
 - name: Kinect Laser Harp
   sub: "Hackathon Musical Instrument"
-  desc: "An Augmented Reality laser harp using the Kinect. I built this in a day at DubHacks."
+  desc: "Augmented Reality laser harp using the Kinect, built at DubHacks."
   img: harp.jpg
   github: Kinect-Laser-Harp
   youtube: cuG4zneXyhA

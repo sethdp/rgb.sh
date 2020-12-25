@@ -2,19 +2,19 @@
 title: College Projects
 ---
 {% for project in site.data.college %}
+<!-- TODO is there a semantic tag for this? -->
 <div class="proj">
-    <div class="pimg">
-        <div>
-            <h2 class="main">{{ project.name }}</h2>
-            <h3 class="main">{{ project.sub }}</h3>
-        </div>
-        <div>
+    <div class="prev">
+        <header>
+            <h2>{{ project.name }}</h2>
+            <h3>{{ project.sub }}</h3>
             {% if project.arxiv %}<a href="https://arxiv.org/abs/{{ project.arxiv }}">ArXiv</a>{% endif %}
             {% if project.github %}<a href="https://github.com/pens/{{ project.github }}">GitHub</a>{% endif %}
             {% if project.youtube %}<a href="https://youtu.be/{{ project.youtube }}">YouTube</a>{% endif %}
-        </div>
-        <img class="main" src="assets/home/projects/{{ project.img }}"/>
+        </header>
+        <!-- TODO it would be cool to inline these... -->
+        <img height="337.922" width="600" src="assets/home/projects/{{ project.img }}"/>
     </div>
-    <p class="main">{{ project.desc }}</p>
+    <p>{{ project.desc }}</p>
 </div>
 {% endfor %}

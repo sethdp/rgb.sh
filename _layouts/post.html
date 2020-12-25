@@ -1,16 +1,17 @@
 ---
 layout: head
 ---
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-<div class="postbody">
-<nav><a href="/blog">Return</a></nav>
-
-<h1>{{ page.title }}</h1>
-<h2>{{ page.date | date: '%B %e %Y' }}</h2>
-<p class="desc">{{ page.excerpt }}</p>
-
-{{ content }}
-
-<nav><a href="/blog">Return</a></nav>
-</div>
+<header>
+    <a href="/">Home</a>
+</header>
+<article>
+    <header>
+        <h1>{{ page.title }}</h1>
+        <h2>{{ page.date | date: '%B %e %Y' }}</h2>
+        <p class="excerpt">{{ page.excerpt }}</p>
+    </header>
+    {{ content }}
+</article>
+<footer>
+    <a href="/">Home</a>
+</footer>

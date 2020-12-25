@@ -1,14 +1,14 @@
 ---
 title: Blog
 ---
-<img id="t1" src="/assets/home/tri1.png">
-<img id="t2" src="/assets/home/tri2.png">
-<img id="t3" src="/assets/home/tri3.png">
-
 {% for post in site.posts %}
-<a href="{{post.url}}" class="post">
-    <h2 class="main">{{ post.title }}</h2>
-    <h3 class="main">{{ post.date | date: '%B %e %Y' }}</h3>
-    <p class="main">{{ post.excerpt }}</p>
+<!-- TODO is there a semantic tag for this? -->
+<a class="post" href="{{post.url}}">
+    <h2>{{ post.title }}</h2>
+    <h3>{{ post.date | date: '%B %e %Y' }}</h3>
+    <p>{{ post.excerpt }}</p>
 </a>
 {% endfor %}
+<img class="t t1" src="/assets/home/tri1.png">
+<img class="t t2" src="/assets/home/tri2.png">
+<img class="t t3" src="/assets/home/tri3.png">

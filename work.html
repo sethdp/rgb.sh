@@ -1,12 +1,12 @@
 ---
 title: Experience
 ---
-<img id="mask" src="/assets/home/mask.png">
-
-{% for job in site.data.work %}
+{% for job in site.data.work %} 
+<!-- TODO is there a semantic tag for this? -->
 <div class="job">
-    <h2 class="main">{{ job.company }}</h2>
-    <h3 class="main">{{ job.date }}</h3>
-    <p class="main">{{ job.desc }}</p>
+    <h2>{{ job.company }}</h2>
+    <h3>{{ job.date }}</h3>
+    <p>{{ job.desc }}</p>
 </div>
 {% endfor %}
+<img class="mask" src="/assets/home/mask.png">
